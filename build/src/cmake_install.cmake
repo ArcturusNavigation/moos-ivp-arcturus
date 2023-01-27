@@ -42,6 +42,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/toyat/moos-ivp-arcturus/build/src/lib_behaviors-test/cmake_install.cmake")
   include("/home/toyat/moos-ivp-arcturus/build/src/pExampleApp/cmake_install.cmake")
   include("/home/toyat/moos-ivp-arcturus/build/src/pXRelayTest/cmake_install.cmake")
+  include("/home/toyat/moos-ivp-arcturus/build/src/pSequence/cmake_install.cmake")
 
 endif()
 

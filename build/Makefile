@@ -149,6 +149,19 @@ pXRelayTest/fast:
 	$(MAKE) -f src/pXRelayTest/CMakeFiles/pXRelayTest.dir/build.make src/pXRelayTest/CMakeFiles/pXRelayTest.dir/build
 .PHONY : pXRelayTest/fast
 
+#=============================================================================
+# Target rules for targets named pSequence
+
+# Build rule for target.
+pSequence: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pSequence
+.PHONY : pSequence
+
+# fast build rule for target.
+pSequence/fast:
+	$(MAKE) -f src/pSequence/CMakeFiles/pSequence.dir/build.make src/pSequence/CMakeFiles/pSequence.dir/build
+.PHONY : pSequence/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -160,6 +173,7 @@ help:
 	@echo "... BHV_SimpleWaypoint"
 	@echo "... pExampleApp"
 	@echo "... pXRelayTest"
+	@echo "... pSequence"
 .PHONY : help
 
 
