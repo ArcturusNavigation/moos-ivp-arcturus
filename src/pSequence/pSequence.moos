@@ -1,0 +1,9 @@
+//------------------------------------------------
+// pSequence config block
+
+ProcessConfig = pSequence
+{
+   AppTick   = 4
+   CommsTick = 4
+}
+

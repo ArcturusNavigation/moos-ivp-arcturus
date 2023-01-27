@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/toyat/moos-ivp-arcturus/src/pSimpleApp/SimpleApp.h
+MOOSLIB/MOOSApp.h
+-
+
+/home/toyat/moos-ivp-arcturus/src/pSimpleApp/main.cpp
+SimpleApp.h
+/home/toyat/moos-ivp-arcturus/src/pSimpleApp/SimpleApp.h
+

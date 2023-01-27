@@ -1,0 +1,1 @@
+/usr/bin/c++   -fPIC -g -Wdeprecated-declarations  -rdynamic CMakeFiles/pSequence.dir/Sequence.cpp.o CMakeFiles/pSequence.dir/Sequence_Info.cpp.o CMakeFiles/pSequence.dir/main.cpp.o  -o ../../../bin/pSequence   -L/home/toyat/moos-ivp/lib  -Wl,-rpath,/home/toyat/moos-ivp/lib /home/toyat/moos-ivp/build/MOOS/MOOSCore/lib/libMOOS.a -lmbutil -lm -lpthread -pthread 
