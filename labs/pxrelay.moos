@@ -1,0 +1,89 @@
+ServerHost = localhost
+ServerPort = 9000
+Community  = alpha
+
+//------------------------------------------
+// Antler configuration  block
+ProcessConfig = ANTLER
+{
+  MSBetweenLaunches = 200
+
+  Run = MOOSDB	 	 @ NewConsole = false
+  Run = uXMS     	 @ NewConsole = true
+  Run = pXRelayTest	 	 @ NewConsole = false ~pXRelay_PEARS
+  Run = pXRelayTest	 	 @ NewConsole = false ~pXRelay_APPLES
+  Run = uTimerScript @ NewConsole = false ~uTimerScript_Kick
+  Run = uTimerScript @ NewConsole = false ~uTimerScript_Count
+
+}
+
+ProcessConfig = uXMS
+{
+  AppTick = 4
+  CommsTick = 4
+  VAR = APPLES, PEARS, COUNTER
+  DISPLAY_ALL = true
+  DISPLAY_SOURCE = true
+  DISPLAY_TIME = true
+  COLOR_MAP = APPLES, red
+  COLOR_MAP = PEARS, green
+  COLOR_MAP = COUNTER, blue
+}
+
+//------------------------------------------
+// pXRelay_APPLES config block
+
+ProcessConfig = pXRelay_APPLES
+{
+  AppTick	= 10
+  CommsTick	= 10
+
+  incoming_var  = APPLES
+  outgoing_var  = PEARS
+}
+
+//------------------------------------------
+// pXRelay_PEARS config block
+
+ProcessConfig = pXRelay_PEARS
+{
+  AppTick	= 10
+  CommsTick	= 10
+
+  incoming_var  = PEARS
+  outgoing_var  = APPLES
+}
+
+ProcessConfig = uTimerScript_Kick
+{
+  AppTick = 4
+  CommsTick = 4
+
+  event = var=APPLES, val=1, time=5
+
+  reset_max = nolimit
+  reset_time = all-posted
+}
+
+ProcessConfig = uTimerScript_Count
+{
+  AppTick   = 4
+  CommsTick = 4
+
+  paused = false
+  condition = APPLES == $(PEARS)
+
+  event  = var=COUNTER, val=1,  time=0.5 
+  event  = var=COUNTER, val=2,  time=1.0
+  event  = var=COUNTER, val=3,  time=1.5 
+  event  = var=COUNTER, val=4,  time=2.0 
+  event  = var=COUNTER, val=5,  time=2.5 
+  event  = var=COUNTER, val=6,  time=3.0 
+  event  = var=COUNTER, val=7,  time=3.5 
+  event  = var=COUNTER, val=8,  time=4.0 
+  event  = var=COUNTER, val=9,  time=4.5 
+  event  = var=COUNTER, val=10, time=5
+  
+  reset_max  = nolimit
+  reset_time = all-posted
+}  
