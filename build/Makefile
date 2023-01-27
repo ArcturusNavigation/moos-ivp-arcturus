@@ -150,17 +150,17 @@ pXRelayTest/fast:
 .PHONY : pXRelayTest/fast
 
 #=============================================================================
-# Target rules for targets named pSequence
+# Target rules for targets named pOdometry
 
 # Build rule for target.
-pSequence: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 pSequence
-.PHONY : pSequence
+pOdometry: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pOdometry
+.PHONY : pOdometry
 
 # fast build rule for target.
-pSequence/fast:
-	$(MAKE) -f src/pSequence/CMakeFiles/pSequence.dir/build.make src/pSequence/CMakeFiles/pSequence.dir/build
-.PHONY : pSequence/fast
+pOdometry/fast:
+	$(MAKE) -f src/pOdometry/CMakeFiles/pOdometry.dir/build.make src/pOdometry/CMakeFiles/pOdometry.dir/build
+.PHONY : pOdometry/fast
 
 # Help Target
 help:
@@ -173,7 +173,7 @@ help:
 	@echo "... BHV_SimpleWaypoint"
 	@echo "... pExampleApp"
 	@echo "... pXRelayTest"
-	@echo "... pSequence"
+	@echo "... pOdometry"
 .PHONY : help
 
 
