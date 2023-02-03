@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/toyat/moos-ivp-arcturus
+CMAKE_SOURCE_DIR = /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/toyat/moos-ivp-arcturus/build
+CMAKE_BINARY_DIR = /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/toyat/moos-ivp-arcturus/build/CMakeFiles /home/toyat/moos-ivp-arcturus/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/CMakeFiles /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/toyat/moos-ivp-arcturus/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -109,6 +109,32 @@ preinstall/fast:
 depend:
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
+
+#=============================================================================
+# Target rules for targets named gateway_tcp
+
+# Build rule for target.
+gateway_tcp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gateway_tcp
+.PHONY : gateway_tcp
+
+# fast build rule for target.
+gateway_tcp/fast:
+	$(MAKE) -f src/lib/lib_gateway_tcp/CMakeFiles/gateway_tcp.dir/build.make src/lib/lib_gateway_tcp/CMakeFiles/gateway_tcp.dir/build
+.PHONY : gateway_tcp/fast
+
+#=============================================================================
+# Target rules for targets named gateway_protobuf
+
+# Build rule for target.
+gateway_protobuf: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gateway_protobuf
+.PHONY : gateway_protobuf
+
+# fast build rule for target.
+gateway_protobuf/fast:
+	$(MAKE) -f src/lib/lib_gateway_protobuf/CMakeFiles/gateway_protobuf.dir/build.make src/lib/lib_gateway_protobuf/CMakeFiles/gateway_protobuf.dir/build
+.PHONY : gateway_protobuf/fast
 
 #=============================================================================
 # Target rules for targets named BHV_SimpleWaypoint
@@ -162,6 +188,19 @@ pOdometry/fast:
 	$(MAKE) -f src/pOdometry/CMakeFiles/pOdometry.dir/build.make src/pOdometry/CMakeFiles/pOdometry.dir/build
 .PHONY : pOdometry/fast
 
+#=============================================================================
+# Target rules for targets named iMOOSGateway
+
+# Build rule for target.
+iMOOSGateway: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 iMOOSGateway
+.PHONY : iMOOSGateway
+
+# fast build rule for target.
+iMOOSGateway/fast:
+	$(MAKE) -f src/iMOOSGateway/CMakeFiles/iMOOSGateway.dir/build.make src/iMOOSGateway/CMakeFiles/iMOOSGateway.dir/build
+.PHONY : iMOOSGateway/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -170,10 +209,13 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... gateway_tcp"
+	@echo "... gateway_protobuf"
 	@echo "... BHV_SimpleWaypoint"
 	@echo "... pExampleApp"
 	@echo "... pXRelayTest"
 	@echo "... pOdometry"
+	@echo "... iMOOSGateway"
 .PHONY : help
 
 

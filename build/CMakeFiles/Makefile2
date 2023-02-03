@@ -44,10 +44,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/toyat/moos-ivp-arcturus
+CMAKE_SOURCE_DIR = /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/toyat/moos-ivp-arcturus/build
+CMAKE_BINARY_DIR = /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -71,28 +71,109 @@ clean: src/clean
 # Directory level rules for directory src
 
 # Recursive "all" directory target.
+src/all: src/lib/all
 src/all: src/lib_behaviors-test/all
 src/all: src/pExampleApp/all
 src/all: src/pXRelayTest/all
 src/all: src/pOdometry/all
+src/all: src/iMOOSGateway/all
 
 .PHONY : src/all
 
 # Recursive "preinstall" directory target.
+src/preinstall: src/lib/preinstall
 src/preinstall: src/lib_behaviors-test/preinstall
 src/preinstall: src/pExampleApp/preinstall
 src/preinstall: src/pXRelayTest/preinstall
 src/preinstall: src/pOdometry/preinstall
+src/preinstall: src/iMOOSGateway/preinstall
 
 .PHONY : src/preinstall
 
 # Recursive "clean" directory target.
+src/clean: src/lib/clean
 src/clean: src/lib_behaviors-test/clean
 src/clean: src/pExampleApp/clean
 src/clean: src/pXRelayTest/clean
 src/clean: src/pOdometry/clean
+src/clean: src/iMOOSGateway/clean
 
 .PHONY : src/clean
+
+#=============================================================================
+# Directory level rules for directory src/iMOOSGateway
+
+# Recursive "all" directory target.
+src/iMOOSGateway/all: src/iMOOSGateway/CMakeFiles/iMOOSGateway.dir/all
+
+.PHONY : src/iMOOSGateway/all
+
+# Recursive "preinstall" directory target.
+src/iMOOSGateway/preinstall:
+
+.PHONY : src/iMOOSGateway/preinstall
+
+# Recursive "clean" directory target.
+src/iMOOSGateway/clean: src/iMOOSGateway/CMakeFiles/iMOOSGateway.dir/clean
+
+.PHONY : src/iMOOSGateway/clean
+
+#=============================================================================
+# Directory level rules for directory src/lib
+
+# Recursive "all" directory target.
+src/lib/all: src/lib/lib_gateway_tcp/all
+src/lib/all: src/lib/lib_gateway_protobuf/all
+
+.PHONY : src/lib/all
+
+# Recursive "preinstall" directory target.
+src/lib/preinstall: src/lib/lib_gateway_tcp/preinstall
+src/lib/preinstall: src/lib/lib_gateway_protobuf/preinstall
+
+.PHONY : src/lib/preinstall
+
+# Recursive "clean" directory target.
+src/lib/clean: src/lib/lib_gateway_tcp/clean
+src/lib/clean: src/lib/lib_gateway_protobuf/clean
+
+.PHONY : src/lib/clean
+
+#=============================================================================
+# Directory level rules for directory src/lib/lib_gateway_protobuf
+
+# Recursive "all" directory target.
+src/lib/lib_gateway_protobuf/all: src/lib/lib_gateway_protobuf/CMakeFiles/gateway_protobuf.dir/all
+
+.PHONY : src/lib/lib_gateway_protobuf/all
+
+# Recursive "preinstall" directory target.
+src/lib/lib_gateway_protobuf/preinstall:
+
+.PHONY : src/lib/lib_gateway_protobuf/preinstall
+
+# Recursive "clean" directory target.
+src/lib/lib_gateway_protobuf/clean: src/lib/lib_gateway_protobuf/CMakeFiles/gateway_protobuf.dir/clean
+
+.PHONY : src/lib/lib_gateway_protobuf/clean
+
+#=============================================================================
+# Directory level rules for directory src/lib/lib_gateway_tcp
+
+# Recursive "all" directory target.
+src/lib/lib_gateway_tcp/all: src/lib/lib_gateway_tcp/CMakeFiles/gateway_tcp.dir/all
+
+.PHONY : src/lib/lib_gateway_tcp/all
+
+# Recursive "preinstall" directory target.
+src/lib/lib_gateway_tcp/preinstall:
+
+.PHONY : src/lib/lib_gateway_tcp/preinstall
+
+# Recursive "clean" directory target.
+src/lib/lib_gateway_tcp/clean: src/lib/lib_gateway_tcp/CMakeFiles/gateway_tcp.dir/clean
+
+.PHONY : src/lib/lib_gateway_tcp/clean
 
 #=============================================================================
 # Directory level rules for directory src/lib_behaviors-test
@@ -167,20 +248,74 @@ src/pXRelayTest/clean: src/pXRelayTest/CMakeFiles/pXRelayTest.dir/clean
 .PHONY : src/pXRelayTest/clean
 
 #=============================================================================
+# Target rules for target src/lib/lib_gateway_tcp/CMakeFiles/gateway_tcp.dir
+
+# All Build rule for target.
+src/lib/lib_gateway_tcp/CMakeFiles/gateway_tcp.dir/all:
+	$(MAKE) -f src/lib/lib_gateway_tcp/CMakeFiles/gateway_tcp.dir/build.make src/lib/lib_gateway_tcp/CMakeFiles/gateway_tcp.dir/depend
+	$(MAKE) -f src/lib/lib_gateway_tcp/CMakeFiles/gateway_tcp.dir/build.make src/lib/lib_gateway_tcp/CMakeFiles/gateway_tcp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/CMakeFiles --progress-num=7,8,9,10 "Built target gateway_tcp"
+.PHONY : src/lib/lib_gateway_tcp/CMakeFiles/gateway_tcp.dir/all
+
+# Build rule for subdir invocation for target.
+src/lib/lib_gateway_tcp/CMakeFiles/gateway_tcp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/CMakeFiles 4
+	$(MAKE) -f CMakeFiles/Makefile2 src/lib/lib_gateway_tcp/CMakeFiles/gateway_tcp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/CMakeFiles 0
+.PHONY : src/lib/lib_gateway_tcp/CMakeFiles/gateway_tcp.dir/rule
+
+# Convenience name for target.
+gateway_tcp: src/lib/lib_gateway_tcp/CMakeFiles/gateway_tcp.dir/rule
+
+.PHONY : gateway_tcp
+
+# clean rule for target.
+src/lib/lib_gateway_tcp/CMakeFiles/gateway_tcp.dir/clean:
+	$(MAKE) -f src/lib/lib_gateway_tcp/CMakeFiles/gateway_tcp.dir/build.make src/lib/lib_gateway_tcp/CMakeFiles/gateway_tcp.dir/clean
+.PHONY : src/lib/lib_gateway_tcp/CMakeFiles/gateway_tcp.dir/clean
+
+#=============================================================================
+# Target rules for target src/lib/lib_gateway_protobuf/CMakeFiles/gateway_protobuf.dir
+
+# All Build rule for target.
+src/lib/lib_gateway_protobuf/CMakeFiles/gateway_protobuf.dir/all:
+	$(MAKE) -f src/lib/lib_gateway_protobuf/CMakeFiles/gateway_protobuf.dir/build.make src/lib/lib_gateway_protobuf/CMakeFiles/gateway_protobuf.dir/depend
+	$(MAKE) -f src/lib/lib_gateway_protobuf/CMakeFiles/gateway_protobuf.dir/build.make src/lib/lib_gateway_protobuf/CMakeFiles/gateway_protobuf.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/CMakeFiles --progress-num=4,5,6 "Built target gateway_protobuf"
+.PHONY : src/lib/lib_gateway_protobuf/CMakeFiles/gateway_protobuf.dir/all
+
+# Build rule for subdir invocation for target.
+src/lib/lib_gateway_protobuf/CMakeFiles/gateway_protobuf.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/CMakeFiles 3
+	$(MAKE) -f CMakeFiles/Makefile2 src/lib/lib_gateway_protobuf/CMakeFiles/gateway_protobuf.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/CMakeFiles 0
+.PHONY : src/lib/lib_gateway_protobuf/CMakeFiles/gateway_protobuf.dir/rule
+
+# Convenience name for target.
+gateway_protobuf: src/lib/lib_gateway_protobuf/CMakeFiles/gateway_protobuf.dir/rule
+
+.PHONY : gateway_protobuf
+
+# clean rule for target.
+src/lib/lib_gateway_protobuf/CMakeFiles/gateway_protobuf.dir/clean:
+	$(MAKE) -f src/lib/lib_gateway_protobuf/CMakeFiles/gateway_protobuf.dir/build.make src/lib/lib_gateway_protobuf/CMakeFiles/gateway_protobuf.dir/clean
+.PHONY : src/lib/lib_gateway_protobuf/CMakeFiles/gateway_protobuf.dir/clean
+
+#=============================================================================
 # Target rules for target src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir
 
 # All Build rule for target.
 src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/all:
 	$(MAKE) -f src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/build.make src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/depend
 	$(MAKE) -f src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/build.make src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/toyat/moos-ivp-arcturus/build/CMakeFiles --progress-num=1,2,3 "Built target BHV_SimpleWaypoint"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/CMakeFiles --progress-num=1,2,3 "Built target BHV_SimpleWaypoint"
 .PHONY : src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/all
 
 # Build rule for subdir invocation for target.
 src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/toyat/moos-ivp-arcturus/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/CMakeFiles 3
 	$(MAKE) -f CMakeFiles/Makefile2 src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/toyat/moos-ivp-arcturus/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/CMakeFiles 0
 .PHONY : src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/rule
 
 # Convenience name for target.
@@ -200,14 +335,14 @@ src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/clean:
 src/pExampleApp/CMakeFiles/pExampleApp.dir/all:
 	$(MAKE) -f src/pExampleApp/CMakeFiles/pExampleApp.dir/build.make src/pExampleApp/CMakeFiles/pExampleApp.dir/depend
 	$(MAKE) -f src/pExampleApp/CMakeFiles/pExampleApp.dir/build.make src/pExampleApp/CMakeFiles/pExampleApp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/toyat/moos-ivp-arcturus/build/CMakeFiles --progress-num=4,5 "Built target pExampleApp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/CMakeFiles --progress-num=15,16 "Built target pExampleApp"
 .PHONY : src/pExampleApp/CMakeFiles/pExampleApp.dir/all
 
 # Build rule for subdir invocation for target.
 src/pExampleApp/CMakeFiles/pExampleApp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/toyat/moos-ivp-arcturus/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 src/pExampleApp/CMakeFiles/pExampleApp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/toyat/moos-ivp-arcturus/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/CMakeFiles 0
 .PHONY : src/pExampleApp/CMakeFiles/pExampleApp.dir/rule
 
 # Convenience name for target.
@@ -227,14 +362,14 @@ src/pExampleApp/CMakeFiles/pExampleApp.dir/clean:
 src/pXRelayTest/CMakeFiles/pXRelayTest.dir/all:
 	$(MAKE) -f src/pXRelayTest/CMakeFiles/pXRelayTest.dir/build.make src/pXRelayTest/CMakeFiles/pXRelayTest.dir/depend
 	$(MAKE) -f src/pXRelayTest/CMakeFiles/pXRelayTest.dir/build.make src/pXRelayTest/CMakeFiles/pXRelayTest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/toyat/moos-ivp-arcturus/build/CMakeFiles --progress-num=10,11,12,13 "Built target pXRelayTest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/CMakeFiles --progress-num=21,22,23,24 "Built target pXRelayTest"
 .PHONY : src/pXRelayTest/CMakeFiles/pXRelayTest.dir/all
 
 # Build rule for subdir invocation for target.
 src/pXRelayTest/CMakeFiles/pXRelayTest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/toyat/moos-ivp-arcturus/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/CMakeFiles 4
 	$(MAKE) -f CMakeFiles/Makefile2 src/pXRelayTest/CMakeFiles/pXRelayTest.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/toyat/moos-ivp-arcturus/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/CMakeFiles 0
 .PHONY : src/pXRelayTest/CMakeFiles/pXRelayTest.dir/rule
 
 # Convenience name for target.
@@ -254,14 +389,14 @@ src/pXRelayTest/CMakeFiles/pXRelayTest.dir/clean:
 src/pOdometry/CMakeFiles/pOdometry.dir/all:
 	$(MAKE) -f src/pOdometry/CMakeFiles/pOdometry.dir/build.make src/pOdometry/CMakeFiles/pOdometry.dir/depend
 	$(MAKE) -f src/pOdometry/CMakeFiles/pOdometry.dir/build.make src/pOdometry/CMakeFiles/pOdometry.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/toyat/moos-ivp-arcturus/build/CMakeFiles --progress-num=6,7,8,9 "Built target pOdometry"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/CMakeFiles --progress-num=17,18,19,20 "Built target pOdometry"
 .PHONY : src/pOdometry/CMakeFiles/pOdometry.dir/all
 
 # Build rule for subdir invocation for target.
 src/pOdometry/CMakeFiles/pOdometry.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/toyat/moos-ivp-arcturus/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/CMakeFiles 4
 	$(MAKE) -f CMakeFiles/Makefile2 src/pOdometry/CMakeFiles/pOdometry.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/toyat/moos-ivp-arcturus/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/CMakeFiles 0
 .PHONY : src/pOdometry/CMakeFiles/pOdometry.dir/rule
 
 # Convenience name for target.
@@ -273,6 +408,34 @@ pOdometry: src/pOdometry/CMakeFiles/pOdometry.dir/rule
 src/pOdometry/CMakeFiles/pOdometry.dir/clean:
 	$(MAKE) -f src/pOdometry/CMakeFiles/pOdometry.dir/build.make src/pOdometry/CMakeFiles/pOdometry.dir/clean
 .PHONY : src/pOdometry/CMakeFiles/pOdometry.dir/clean
+
+#=============================================================================
+# Target rules for target src/iMOOSGateway/CMakeFiles/iMOOSGateway.dir
+
+# All Build rule for target.
+src/iMOOSGateway/CMakeFiles/iMOOSGateway.dir/all: src/lib/lib_gateway_tcp/CMakeFiles/gateway_tcp.dir/all
+src/iMOOSGateway/CMakeFiles/iMOOSGateway.dir/all: src/lib/lib_gateway_protobuf/CMakeFiles/gateway_protobuf.dir/all
+	$(MAKE) -f src/iMOOSGateway/CMakeFiles/iMOOSGateway.dir/build.make src/iMOOSGateway/CMakeFiles/iMOOSGateway.dir/depend
+	$(MAKE) -f src/iMOOSGateway/CMakeFiles/iMOOSGateway.dir/build.make src/iMOOSGateway/CMakeFiles/iMOOSGateway.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/CMakeFiles --progress-num=11,12,13,14 "Built target iMOOSGateway"
+.PHONY : src/iMOOSGateway/CMakeFiles/iMOOSGateway.dir/all
+
+# Build rule for subdir invocation for target.
+src/iMOOSGateway/CMakeFiles/iMOOSGateway.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/CMakeFiles 11
+	$(MAKE) -f CMakeFiles/Makefile2 src/iMOOSGateway/CMakeFiles/iMOOSGateway.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/CMakeFiles 0
+.PHONY : src/iMOOSGateway/CMakeFiles/iMOOSGateway.dir/rule
+
+# Convenience name for target.
+iMOOSGateway: src/iMOOSGateway/CMakeFiles/iMOOSGateway.dir/rule
+
+.PHONY : iMOOSGateway
+
+# clean rule for target.
+src/iMOOSGateway/CMakeFiles/iMOOSGateway.dir/clean:
+	$(MAKE) -f src/iMOOSGateway/CMakeFiles/iMOOSGateway.dir/build.make src/iMOOSGateway/CMakeFiles/iMOOSGateway.dir/clean
+.PHONY : src/iMOOSGateway/CMakeFiles/iMOOSGateway.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

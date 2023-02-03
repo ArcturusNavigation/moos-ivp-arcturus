@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/toyat/moos-ivp-arcturus
+CMAKE_SOURCE_DIR = /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/toyat/moos-ivp-arcturus/build
+CMAKE_BINARY_DIR = /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build
 
 # Include any dependencies generated for this target.
 include src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/depend.make
@@ -59,29 +59,29 @@ include src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/flags.make
 
 src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/BHV_SimpleWaypoint.cpp.o: src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/flags.make
 src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/BHV_SimpleWaypoint.cpp.o: ../src/lib_behaviors-test/BHV_SimpleWaypoint.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/toyat/moos-ivp-arcturus/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/BHV_SimpleWaypoint.cpp.o"
-	cd /home/toyat/moos-ivp-arcturus/build/src/lib_behaviors-test && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/BHV_SimpleWaypoint.dir/BHV_SimpleWaypoint.cpp.o -c /home/toyat/moos-ivp-arcturus/src/lib_behaviors-test/BHV_SimpleWaypoint.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/BHV_SimpleWaypoint.cpp.o"
+	cd /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/src/lib_behaviors-test && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/BHV_SimpleWaypoint.dir/BHV_SimpleWaypoint.cpp.o -c /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/src/lib_behaviors-test/BHV_SimpleWaypoint.cpp
 
 src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/BHV_SimpleWaypoint.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/BHV_SimpleWaypoint.dir/BHV_SimpleWaypoint.cpp.i"
-	cd /home/toyat/moos-ivp-arcturus/build/src/lib_behaviors-test && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/toyat/moos-ivp-arcturus/src/lib_behaviors-test/BHV_SimpleWaypoint.cpp > CMakeFiles/BHV_SimpleWaypoint.dir/BHV_SimpleWaypoint.cpp.i
+	cd /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/src/lib_behaviors-test && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/src/lib_behaviors-test/BHV_SimpleWaypoint.cpp > CMakeFiles/BHV_SimpleWaypoint.dir/BHV_SimpleWaypoint.cpp.i
 
 src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/BHV_SimpleWaypoint.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BHV_SimpleWaypoint.dir/BHV_SimpleWaypoint.cpp.s"
-	cd /home/toyat/moos-ivp-arcturus/build/src/lib_behaviors-test && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/toyat/moos-ivp-arcturus/src/lib_behaviors-test/BHV_SimpleWaypoint.cpp -o CMakeFiles/BHV_SimpleWaypoint.dir/BHV_SimpleWaypoint.cpp.s
+	cd /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/src/lib_behaviors-test && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/src/lib_behaviors-test/BHV_SimpleWaypoint.cpp -o CMakeFiles/BHV_SimpleWaypoint.dir/BHV_SimpleWaypoint.cpp.s
 
 src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/AOF_SimpleWaypoint.cpp.o: src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/flags.make
 src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/AOF_SimpleWaypoint.cpp.o: ../src/lib_behaviors-test/AOF_SimpleWaypoint.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/toyat/moos-ivp-arcturus/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/AOF_SimpleWaypoint.cpp.o"
-	cd /home/toyat/moos-ivp-arcturus/build/src/lib_behaviors-test && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/BHV_SimpleWaypoint.dir/AOF_SimpleWaypoint.cpp.o -c /home/toyat/moos-ivp-arcturus/src/lib_behaviors-test/AOF_SimpleWaypoint.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/AOF_SimpleWaypoint.cpp.o"
+	cd /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/src/lib_behaviors-test && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/BHV_SimpleWaypoint.dir/AOF_SimpleWaypoint.cpp.o -c /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/src/lib_behaviors-test/AOF_SimpleWaypoint.cpp
 
 src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/AOF_SimpleWaypoint.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/BHV_SimpleWaypoint.dir/AOF_SimpleWaypoint.cpp.i"
-	cd /home/toyat/moos-ivp-arcturus/build/src/lib_behaviors-test && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/toyat/moos-ivp-arcturus/src/lib_behaviors-test/AOF_SimpleWaypoint.cpp > CMakeFiles/BHV_SimpleWaypoint.dir/AOF_SimpleWaypoint.cpp.i
+	cd /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/src/lib_behaviors-test && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/src/lib_behaviors-test/AOF_SimpleWaypoint.cpp > CMakeFiles/BHV_SimpleWaypoint.dir/AOF_SimpleWaypoint.cpp.i
 
 src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/AOF_SimpleWaypoint.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BHV_SimpleWaypoint.dir/AOF_SimpleWaypoint.cpp.s"
-	cd /home/toyat/moos-ivp-arcturus/build/src/lib_behaviors-test && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/toyat/moos-ivp-arcturus/src/lib_behaviors-test/AOF_SimpleWaypoint.cpp -o CMakeFiles/BHV_SimpleWaypoint.dir/AOF_SimpleWaypoint.cpp.s
+	cd /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/src/lib_behaviors-test && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/src/lib_behaviors-test/AOF_SimpleWaypoint.cpp -o CMakeFiles/BHV_SimpleWaypoint.dir/AOF_SimpleWaypoint.cpp.s
 
 # Object files for target BHV_SimpleWaypoint
 BHV_SimpleWaypoint_OBJECTS = \
@@ -95,8 +95,8 @@ BHV_SimpleWaypoint_EXTERNAL_OBJECTS =
 ../lib/libBHV_SimpleWaypoint.so: src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/AOF_SimpleWaypoint.cpp.o
 ../lib/libBHV_SimpleWaypoint.so: src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/build.make
 ../lib/libBHV_SimpleWaypoint.so: src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/toyat/moos-ivp-arcturus/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX shared library ../../../lib/libBHV_SimpleWaypoint.so"
-	cd /home/toyat/moos-ivp-arcturus/build/src/lib_behaviors-test && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/BHV_SimpleWaypoint.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX shared library ../../../lib/libBHV_SimpleWaypoint.so"
+	cd /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/src/lib_behaviors-test && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/BHV_SimpleWaypoint.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/build: ../lib/libBHV_SimpleWaypoint.so
@@ -104,10 +104,10 @@ src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/build: ../lib/libBHV_Si
 .PHONY : src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/build
 
 src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/clean:
-	cd /home/toyat/moos-ivp-arcturus/build/src/lib_behaviors-test && $(CMAKE_COMMAND) -P CMakeFiles/BHV_SimpleWaypoint.dir/cmake_clean.cmake
+	cd /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/src/lib_behaviors-test && $(CMAKE_COMMAND) -P CMakeFiles/BHV_SimpleWaypoint.dir/cmake_clean.cmake
 .PHONY : src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/clean
 
 src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/depend:
-	cd /home/toyat/moos-ivp-arcturus/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/toyat/moos-ivp-arcturus /home/toyat/moos-ivp-arcturus/src/lib_behaviors-test /home/toyat/moos-ivp-arcturus/build /home/toyat/moos-ivp-arcturus/build/src/lib_behaviors-test /home/toyat/moos-ivp-arcturus/build/src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/src/lib_behaviors-test /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/src/lib_behaviors-test /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/depend
 

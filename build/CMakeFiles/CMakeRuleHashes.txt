@@ -1,0 +1,2 @@
+# Hashes of file build rules.
+561ce0239dceb3c9532ea847a66422e6 ../include/lib_gateway_protobuf/gateway.pb.cc

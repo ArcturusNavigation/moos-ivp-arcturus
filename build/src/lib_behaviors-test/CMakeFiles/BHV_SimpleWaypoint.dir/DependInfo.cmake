@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/toyat/moos-ivp-arcturus/src/lib_behaviors-test/AOF_SimpleWaypoint.cpp" "/home/toyat/moos-ivp-arcturus/build/src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/AOF_SimpleWaypoint.cpp.o"
-  "/home/toyat/moos-ivp-arcturus/src/lib_behaviors-test/BHV_SimpleWaypoint.cpp" "/home/toyat/moos-ivp-arcturus/build/src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/BHV_SimpleWaypoint.cpp.o"
+  "/home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/src/lib_behaviors-test/AOF_SimpleWaypoint.cpp" "/home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/AOF_SimpleWaypoint.cpp.o"
+  "/home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/src/lib_behaviors-test/BHV_SimpleWaypoint.cpp" "/home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/src/lib_behaviors-test/CMakeFiles/BHV_SimpleWaypoint.dir/BHV_SimpleWaypoint.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -16,6 +16,7 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "../include"
   "/home/toyat/moos-ivp/MOOS/MOOSCore/Core/libMOOS/include"
   "/home/toyat/moos-ivp/MOOS/MOOSCore/Core/libMOOS/App/include"
   "/home/toyat/moos-ivp/MOOS/MOOSCore/Core/libMOOS/Comms/include"
@@ -24,6 +25,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/home/toyat/moos-ivp/MOOS/MOOSCore/Core/libMOOS/Thirdparty/PocoBits/include"
   "/home/toyat/moos-ivp/MOOS/MOOSCore/Core/libMOOS/Thirdparty/getpot/include"
   "/home/toyat/moos-ivp/MOOS/MOOSCore/Core/libMOOS/Thirdparty/AppCasting/include"
+  "/home/toyat/moos-ivp/MOOS/MOOSGeodesy/libMOOSGeodesy/include"
   "/home/toyat/moos-ivp/ivp/src/lib_apputil"
   "/home/toyat/moos-ivp/ivp/src/lib_behaviors"
   "/home/toyat/moos-ivp/ivp/src/lib_behaviors-colregs"

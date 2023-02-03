@@ -1,4 +1,4 @@
-# Install script for directory: /home/toyat/moos-ivp-arcturus/src/pXRelayTest
+# Install script for directory: /home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/src/pXRelayTest
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

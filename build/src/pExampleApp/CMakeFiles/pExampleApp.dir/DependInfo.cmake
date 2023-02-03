@@ -4,12 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/toyat/moos-ivp-arcturus/src/pExampleApp/main.cpp" "/home/toyat/moos-ivp-arcturus/build/src/pExampleApp/CMakeFiles/pExampleApp.dir/main.cpp.o"
+  "/home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/src/pExampleApp/main.cpp" "/home/toyat/Documents/MIT/Arcturus/moos-ivp-arcturus/build/src/pExampleApp/CMakeFiles/pExampleApp.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "../include"
+  "/home/toyat/moos-ivp/MOOS/MOOSGeodesy/libMOOSGeodesy/include"
   "/home/toyat/moos-ivp/ivp/src/lib_apputil"
   "/home/toyat/moos-ivp/ivp/src/lib_behaviors"
   "/home/toyat/moos-ivp/ivp/src/lib_behaviors-colregs"

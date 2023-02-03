@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC  -fPIC -g -Wdeprecated-declarations  -shared -Wl,-soname,libgateway_tcp.so. -o ../../../../lib/libgateway_tcp.so. CMakeFiles/gateway_tcp.dir/tcp_client.cpp.o CMakeFiles/gateway_tcp.dir/tcp_server.cpp.o CMakeFiles/gateway_tcp.dir/tcp_session.cpp.o   -L/home/toyat/moos-ivp/lib  -Wl,-rpath,/home/toyat/moos-ivp/lib -lprotobuf /usr/lib/x86_64-linux-gnu/libb64.so 

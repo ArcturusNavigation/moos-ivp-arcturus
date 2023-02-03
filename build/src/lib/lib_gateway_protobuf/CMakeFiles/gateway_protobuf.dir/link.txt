@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../../../lib/libgateway_protobuf.a  CMakeFiles/gateway_protobuf.dir/__/__/__/include/lib_gateway_protobuf/gateway.pb.cc.o
+/usr/bin/ranlib ../../../../lib/libgateway_protobuf.a
