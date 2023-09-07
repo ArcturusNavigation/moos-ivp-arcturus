@@ -27,29 +27,30 @@
 
 class Relayer : public CMOOSApp
 {
- public:
-  Relayer();
-  virtual ~Relayer() {};
+	public:
+		Relayer();
+		virtual ~Relayer() {};
 
-  bool OnNewMail(MOOSMSG_LIST &NewMail);
-  bool Iterate();
-  bool OnConnectToServer();
-  bool OnStartUp();
-  void RegisterVariables();
+		bool OnNewMail(MOOSMSG_LIST &NewMail);
+		bool Iterate();
+		bool OnConnectToServer();
+		bool OnStartUp();
+		void RegisterVariables();
 
-  void setIncomingVar(std::string s) {m_incoming_var=s;};
-  void setOutgoingVar(std::string s) {m_outgoing_var=s;};
+		void setIncomingVar(std::string s) {m_incoming_var=s;};
+		void setOutgoingVar(std::string s) {m_outgoing_var=s;};
 
- protected:
-  unsigned long int m_tally_recd;
-  unsigned long int m_tally_sent;
-  unsigned long int m_iterations;
+	protected:
+		unsigned long int m_tally_recd;
+		unsigned long int m_tally_sent;
+		unsigned long int m_iterations;
 
-  std::string       m_incoming_var;
-  std::string       m_outgoing_var;
+		std::string       m_incoming_var;
+		std::string       m_incoming_var_secondary;
+		std::string       m_outgoing_var;
 
-  double            m_start_time_postings;
-  double            m_start_time_iterations;
+		double            m_start_time_postings;
+		double            m_start_time_iterations;
 };
 
 #endif 

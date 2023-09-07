@@ -23,7 +23,7 @@
 #include <iterator>
 #include "Relayer.h"
 #include "MBUtils.h"
- 
+
 using namespace std;
 
 //---------------------------------------------------------
@@ -31,13 +31,13 @@ using namespace std;
 
 Relayer::Relayer()
 {
-  
-  m_tally_recd = 0;
-  m_tally_sent = 0;
-  m_iterations = 0;
 
-  m_start_time_postings   = 0;
-  m_start_time_iterations = 0;
+	m_tally_recd = 0;
+	m_tally_sent = 0;
+	m_iterations = 0;
+
+	m_start_time_postings   = 0;
+	m_start_time_iterations = 0;
 }
 
 //---------------------------------------------------------
@@ -45,16 +45,16 @@ Relayer::Relayer()
 
 bool Relayer::OnNewMail(MOOSMSG_LIST &NewMail)
 {
-  MOOSMSG_LIST::iterator p;
-  for(p = NewMail.begin(); p!=NewMail.end(); p++) {
-    CMOOSMsg &msg = *p;
-    
-    string key = msg.GetKey();
+	MOOSMSG_LIST::iterator p;
+	for(p = NewMail.begin(); p!=NewMail.end(); p++) {
+		CMOOSMsg &msg = *p;
 
-    if(key == m_incoming_var) 
-      m_tally_recd++;
-  }
-  return(true);
+		string key = msg.GetKey();
+
+		if(key == m_incoming_var || key == m_incoming_var_secondary) 
+			m_tally_recd++;
+	}
+	return(true);
 }
 
 
@@ -63,8 +63,8 @@ bool Relayer::OnNewMail(MOOSMSG_LIST &NewMail)
 
 bool Relayer::OnConnectToServer()
 {
-  RegisterVariables();  
-  return(true);
+	RegisterVariables();  
+	return(true);
 }
 
 
@@ -73,8 +73,10 @@ bool Relayer::OnConnectToServer()
 
 void Relayer::RegisterVariables()
 {
-  if(m_incoming_var != "")
-    Register(m_incoming_var, 0);
+	if (m_incoming_var != "")
+		Register(m_incoming_var, 0);
+	if (m_incoming_var_secondary != "")
+		Register(m_incoming_var_secondary, 0);
 }
 
 
@@ -83,37 +85,37 @@ void Relayer::RegisterVariables()
 
 bool Relayer::Iterate()
 {
-  m_iterations++;
+	m_iterations++;
 
-  unsigned int i, amt = (m_tally_recd - m_tally_sent);
-  for(i=0; i<amt; i++) {
-    m_tally_sent++;
-    Notify(m_outgoing_var, m_tally_sent);
-  }
-  
-  // If this is the first iteration just note the start time, otherwise
-  // note the currently calculated frequency and post it to the DB.
-  if(m_start_time_iterations == 0)
-    m_start_time_iterations = MOOSTime();
-  else {
-    double delta_time = (MOOSTime() - m_start_time_iterations) + 0.01;
-    double frequency  = (double)(m_iterations) / delta_time;
-    Notify(m_outgoing_var+"_ITER_HZ", frequency);
-  }
-    
+	unsigned int i, amt = (m_tally_recd - m_tally_sent);
+	for(i=0; i<amt; i++) {
+		m_tally_sent++;
+		Notify(m_outgoing_var, m_tally_sent * 10);
+	}
 
-  // If this is the first time a received msg has been noted, just
-  // note the start time, otherwise calculate and post the frequency.
-  if(amt > 0) {
-    if(m_start_time_postings == 0)
-      m_start_time_postings = MOOSTime();
-    else {
-      double delta_time = (MOOSTime() - m_start_time_postings) + 0.01;
-      double frequency = (double)(m_tally_sent) / delta_time;
-      Notify(m_outgoing_var+"_POST_HZ", frequency);
-    }
-  }
-  return(true);
+	// If this is the first iteration just note the start time, otherwise
+	// note the currently calculated frequency and post it to the DB.
+	if(m_start_time_iterations == 0)
+		m_start_time_iterations = MOOSTime();
+	else {
+		double delta_time = (MOOSTime() - m_start_time_iterations) + 0.01;
+		double frequency  = (double)(m_iterations) / delta_time;
+		Notify(m_outgoing_var+"_ITER_HZ", frequency);
+	}
+
+
+	// If this is the first time a received msg has been noted, just
+	// note the start time, otherwise calculate and post the frequency.
+	if(amt > 0) {
+		if(m_start_time_postings == 0)
+			m_start_time_postings = MOOSTime();
+		else {
+			double delta_time = (MOOSTime() - m_start_time_postings) + 0.01;
+			double frequency = (double)(m_tally_sent) / delta_time;
+			Notify(m_outgoing_var+"_POST_HZ", frequency);
+		}
+	}
+	return(true);
 }
 
 
@@ -124,23 +126,26 @@ bool Relayer::Iterate()
 
 bool Relayer::OnStartUp()
 {
-  STRING_LIST sParams;
-  m_MissionReader.GetConfiguration(GetAppName(), sParams);
-    
-  STRING_LIST::iterator p;
-  for(p = sParams.begin();p!=sParams.end();p++) {
-    string line  = *p;
-    string param = tolower(biteStringX(line, '='));
-    string value = line;
+	STRING_LIST sParams;
+	m_MissionReader.GetConfiguration(GetAppName(), sParams);
 
-    if(param == "incoming_var")
-      m_incoming_var = value;
-    
-    else if(param == "outgoing_var")
-      m_outgoing_var = value;
-  }
+	STRING_LIST::iterator p;
+	for(p = sParams.begin();p!=sParams.end();p++) {
+		string line  = *p;
+		string param = tolower(biteStringX(line, '='));
+		string value = line;
 
-  RegisterVariables();
-  return(true);
+		if (param == "incoming_var")
+			m_incoming_var = value;
+
+		else if (param == "incoming_var_secondary")
+			m_incoming_var_secondary = value;
+
+		else if (param == "outgoing_var")
+			m_outgoing_var = value;
+	}
+
+	RegisterVariables();
+	return(true);
 }
 
