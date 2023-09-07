@@ -1,0 +1,73 @@
+ServerHost = localhost
+ServerPort = 9000
+Community  = alpha
+
+//------------------------------------------
+// Antler configuration  block
+
+ProcessConfig = ANTLER
+{
+	MSBetweenLaunches = 200
+
+	Run = MOOSDB	   @ NewConsole = false
+	Run = uXMS         @ NewConsole = true
+	Run = pXRelayTest  @ NewConsole = false
+	Run = uTimerScript @ NewConsole = false ~ uInit
+	Run = uTimerScript @ NewConsole = false ~ uTimerLoop
+}
+
+//------------------------------------------
+// uXMS config block
+
+ProcessConfig = uXMS
+{
+	AppTick   = 10
+	CommsTick = 10
+
+	var            = PEARS, APPLES, BANANAS
+	display_source = true
+	display_time   = true
+	color_map      = PEARS, green
+	color_map      = APPLES, red
+	color_map      = BANANAS, yellow
+}
+
+//------------------------------------------
+// pXRelayTest config block
+
+ProcessConfig = pXRelayTest
+{
+	AppTick	  = 10
+	CommsTick = 10
+
+	incoming_var   		   = APPLES
+	incoming_var_secondary = BANANAS
+	outgoing_var           = PEARS
+}
+
+//------------------------------------------
+// uTimerScript config blocks
+
+ProcessConfig = uInit
+{
+	event = var=BANANAS, val=1
+	event = var=APPLES, val=1
+}
+
+
+ProcessConfig = uTimerLoop
+{
+	AppTick   = 10
+	CommsTick = 10
+
+	paused = false
+
+	event = var=BANANAS, val=0,  time=1.0
+	event = var=APPLES, val=0,  time=2.0 
+	event = var=BANANAS, val=1,  time=3.0
+	event = var=APPLES, val=1,  time=4.0 
+
+	reset_max  = nolimit
+	reset_time = all-posted
+}
+

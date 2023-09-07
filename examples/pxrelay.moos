@@ -1,0 +1,78 @@
+ServerHost = localhost
+ServerPort = 9000
+Community  = alpha
+
+//------------------------------------------
+// Antler configuration  block
+
+ProcessConfig = ANTLER
+{
+	MSBetweenLaunches = 200
+
+	Run = MOOSDB	   @ NewConsole = true
+	Run = pXRelay	   @ NewConsole = false ~ pXRelay_PEARS
+	Run = pXRelay	   @ NewConsole = false ~ pXRelay_APPLES
+	Run = uTimerScript @ NewConsole = false ~ uTimerKick
+	Run = uTimerScript @ NewConsole = false ~ uTimerA
+}
+
+//------------------------------------------
+// pXRelay_APPLES config block
+
+ProcessConfig = pXRelay_APPLES
+{
+	AppTick	  = 10
+	CommsTick = 10
+
+	incoming_var  = APPLES
+	outgoing_var  = PEARS
+}
+
+//------------------------------------------
+// pXRelay_PEARS config block
+
+ProcessConfig = pXRelay_PEARS
+{
+	AppTick	  = 10
+	CommsTick = 10
+
+	incoming_var  = PEARS
+	outgoing_var  = APPLES
+}
+
+//------------------------------------------
+// uTimerScript config blocks
+
+ProcessConfig = uTimerKick
+{
+	AppTick   = 10
+	CommsTick = 10
+
+	paused = false
+
+	event = var=PEARS, val=1, time=10.0
+}
+
+ProcessConfig = uTimerA
+{
+	AppTick   = 10
+	CommsTick = 10
+
+	paused = false
+	condition = APPLES == $(PEARS)
+
+	event = var=COUNTER_A, val=1,  time=0.5 
+	event = var=COUNTER_A, val=2,  time=1.0
+	event = var=COUNTER_A, val=3,  time=1.5 
+	event = var=COUNTER_A, val=4,  time=2.0 
+	event = var=COUNTER_A, val=5,  time=2.5 
+	event = var=COUNTER_A, val=6,  time=3.0 
+	event = var=COUNTER_A, val=7,  time=3.5 
+	event = var=COUNTER_A, val=8,  time=4.0 
+	event = var=COUNTER_A, val=9,  time=4.5 
+	event = var=COUNTER_A, val=10, time=5:10 
+
+	reset_max  = nolimit
+	reset_time = all-posted
+}
+
