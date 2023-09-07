@@ -6,8 +6,9 @@
 #        Chris Gagner, and tips borrowed from Dave Billin
 #=======================================================================
 
-CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.3)
 PROJECT( IVP_EXTEND )
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules/")
 
 set (CMAKE_CXX_STANDARD 11)
 
@@ -17,6 +18,7 @@ set (CMAKE_CXX_STANDARD 11)
 
 GET_FILENAME_COMPONENT(IVP_EXTEND_BIN_DIR "${CMAKE_SOURCE_DIR}/bin"  ABSOLUTE )
 GET_FILENAME_COMPONENT(IVP_EXTEND_LIB_DIR "${CMAKE_SOURCE_DIR}/lib"  ABSOLUTE )
+GET_FILENAME_COMPONENT(IVP_EXTEND_INC_DIR "${CMAKE_SOURCE_DIR}/include"  ABSOLUTE )
 
 SET( LIBRARY_OUTPUT_PATH      "${IVP_EXTEND_LIB_DIR}" CACHE PATH "" )
 SET( ARCHIVE_OUTPUT_DIRECTORY "${IVP_EXTEND_LIB_DIR}" CACHE PATH "" )
@@ -24,12 +26,41 @@ SET( LIBRARY_OUTPUT_DIRECTORY "${IVP_EXTEND_LIB_DIR}" CACHE PATH "" )
 
 SET( EXECUTABLE_OUTPUT_PATH    "${IVP_EXTEND_BIN_DIR}" CACHE PATH "" )
 SET( RUNTIME_OUTPUT_DIRECTORY "${IVP_EXTEND_BIN_DIR}"  CACHE PATH "" )
+INCLUDE_DIRECTORIES(${IVP_EXTEND_INC_DIR})
+
+#=======================================================================
+# Find Protocol buffers                                                       
+#=======================================================================
+
+find_package(ProtobufLocal REQUIRED)
+include_directories(${PROTOBUF_INCLUDE_DIRS})
+
+if(${PROTOC_VERSION} VERSION_LESS 2.5.0})
+	message("libprotobuf < 2.5.0")
+else()
+	message("libprotobuf >= 2.5.0")
+	set(PROTOBUF_ALLOW_ALIAS "option allow_alias = true;")
+endif()
 
 #=======================================================================
 # Find MOOS
 #=======================================================================
+
 find_package(MOOS 10.0)
 INCLUDE_DIRECTORIES(${MOOS_INCLUDE_DIRS})
+
+#=======================================================================
+# FINDING MOOSGeodesy' HEADERS AND LIBRARIES...
+#=======================================================================
+
+find_package(MOOSGeodesy)
+include_directories(${MOOSGeodesy_INCLUDE_DIRS})
+link_directories(${MOOSGeodesy_LIBRARY_PATH})
+
+message("+++++++++++++++++++++++++++++++++++++++++")
+message("MOOSGeodesy_INCLUDE_DIRS:" ${MOOSGeodesy_INCLUDE_DIRS})
+message("MOOSGeodesy_LIB_PATH:"     ${MOOSGeodesy_LIBRARY_PATH})
+message("+++++++++++++++++++++++++++++++++++++++++")
 
 #=======================================================================
 # Find the "moos-ivp" base directory
@@ -53,11 +84,26 @@ endif()
 # Specify where to find IvP's headers and libraries...
 #======================================================================
 
-FILE(GLOB IVP_INCLUDE_DIRS ${MOOSIVP_SOURCE_TREE_BASE}/ivp/src/lib_* )
+FILE(GLOB IVP_INCLUDE_DIRS ${MOOSIVP_SOURCE_TREE_BASE}/ivp/src/lib_*)
 INCLUDE_DIRECTORIES(${IVP_INCLUDE_DIRS})
 
-FILE(GLOB IVP_LIBRARY_DIRS ${MOOSIVP_SOURCE_TREE_BASE}/lib )
+FILE(GLOB IVP_LIBRARY_DIRS ${MOOSIVP_SOURCE_TREE_BASE}/lib)
 LINK_DIRECTORIES(${IVP_LIBRARY_DIRS})
+
+#=======================================================================
+# Find the "B64"
+#=======================================================================
+                                                                                                        
+# b64 for the interface
+find_package(B64 REQUIRED)
+set(B64_DOC_STRING "Enable base64 functionality (requires libb64-dev: http://libb64.sourceforge.net/")
+if(B64_FOUND)
+	option(enable_b64 ${B64_DOC_STRING} ON)
+else()
+	option(enable_b64 ${B64_DOC_STRING} OFF)
+	message(">> setting enable_b64 to OFF ... if you need this functionality: 1) install libb64-dev; 2) run cmake -Denable_b64=ON")
+endif()
+include_directories(${B64_INCLUDE_DIRS})
 
 #======================================================================
 # Specify Compiler Flags
