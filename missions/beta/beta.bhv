@@ -1,0 +1,61 @@
+//--------    FILE: beta.bhv   -------------
+
+initialize DEPLOY = false
+initialize RETURN = false
+
+//----------------------------------------------
+Behavior=BHV_Waypoint
+{
+	name      = waypt_return
+	pwt       = 100
+	condition = RETURN = false
+	condition = DEPLOY = true
+	perpetual = false
+	updates   = RETURN_UPDATE
+	endflag   = RETURN = false
+	endflag   = DEPLOY = false
+	endflag   = MISSION = complete
+
+	speed = 2.0
+	capture_radius = 2.0
+	slip_radius = 8.0
+	points = 0,-20
+}
+
+//----------------------------------------------
+Behavior=BHV_Waypoint
+{
+	name      = waypt_guide
+	pwt       = 100
+	condition = RETURN = true
+	condition = DEPLOY = true
+	perpetual = false
+	updates   = RETURN_UPDATE
+	endflag   = RETURN = false
+	endflag   = DEPLOY = false
+	endflag   = MISSION = complete
+
+	speed = 2.0
+	capture_radius = 2.0
+	slip_radius = 8.0
+	points = 0,-20
+}
+
+//----------------------------------------------
+Behavior=BHV_AvoidCollision
+{
+	name      = avoid_buoy
+	pwt       = 100
+	condition = RETURN = true
+	condition = DEPLOY = true
+	perpetual = true
+	updates   = RETURN_UPDATE
+	endflag   = RETURN = false
+	endflag   = DEPLOY = false
+	endflag   = MISSION = complete
+
+	speed = 2.0
+	capture_radius = 2.0
+	slip_radius = 8.0
+	points = 0,-20
+}
