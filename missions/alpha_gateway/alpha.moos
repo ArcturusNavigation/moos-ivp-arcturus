@@ -1,17 +1,19 @@
-//--------    FILE: beta.bhv   -------------
+//-------------------------------------------------
+// NAME: M. Benjamin, MIT CSAIL
+// FILE: alpha.moos
+//-------------------------------------------------
 
 ServerHost   = localhost
 ServerPort   = 9000
-Community    = 
+Community    = alpha
 MOOSTimeWarp = 1
 
-// Magazine Beach
-LatOrigin  = 42.3537
-LongOrigin = -71.1134
+// Forest Lake
+LatOrigin  = 43.825300 
+LongOrigin = -70.330400 
 
 //------------------------------------------
-// Antler configuration block
-
+// Antler configuration  block
 ProcessConfig = ANTLER
 {
 	MSBetweenLaunches = 200
@@ -25,6 +27,7 @@ ProcessConfig = ANTLER
 	Run = uProcessWatch	@ NewConsole = false
 	Run = pNodeReporter	@ NewConsole = false
 	Run = pRealm	    @ NewConsole = false
+    Run = iMOOSGateway  @ NewConsole = false
 }
 
 //------------------------------------------
@@ -37,6 +40,8 @@ ProcessConfig = pLogger
 
 	AsyncLog = true
 
+	// For variables that are published in a bundle on their first post,
+	// explicitly declare their logging request
 	Log = IVPHELM_LIFE_EVENT @ 0 NOSYNC
 	Log = REPORT @ 0 NOSYNC
 	Log = BHV_SETTINGS @ 0 NOSYNC
@@ -69,15 +74,16 @@ ProcessConfig = uProcessWatch
 
 ProcessConfig = uSimMarineV22
 {
-	AppTick   = 4
-	CommsTick = 4
+	AppTick  	= 4
+	CommsTick	= 4
 
-	start_pos = x=0, y=0, heading=180, speed=0
+	start_pos = x=0, y=-20, heading=180, speed=0
 
-	prefix = NAV
+	prefix        = NAV
 
-	turn_rate  = 40
-	thrust_map = 0:0, 20:1, 40:2, 60:3, 80:4, 100:5
+	turn_rate     = 40
+	thrust_map    = 0:0, 20:1, 40:2, 60:3, 80:4, 100:5
+	//thrust_reflect = true
 }
 
 //------------------------------------------
@@ -88,7 +94,7 @@ ProcessConfig = pHelmIvP
 	AppTick    = 4
 	CommsTick  = 4
 
-	behaviors  = beta.bhv
+	behaviors  = alpha.bhv
 	domain     = course:0:359:360
 	domain     = speed:0:4:41
 }
@@ -104,10 +110,8 @@ ProcessConfig = pMarinePIDV22
 	verbose       = true
 	depth_control = false
 
-	// SIM_INSTABILITY = 20
-
 	// Yaw PID controller
-	yaw_pid_kp		 = 1.5
+	yaw_pid_kp		 = 1.2
 	yaw_pid_kd		 = 0.0
 	yaw_pid_ki		 = 0.3
 	yaw_pid_integral_limit = 0.07
@@ -118,7 +122,7 @@ ProcessConfig = pMarinePIDV22
 	speed_pid_ki		 = 0.0
 	speed_pid_integral_limit = 0.07
 
-	//MAXIMUMS
+	// MAXIMUMS
 	maxrudder    = 100
 	maxthrust    = 100
 
@@ -135,7 +139,7 @@ ProcessConfig = pMarineViewer
 	AppTick    = 4
 	CommsTick  = 4
 
-	tiff_file            = magazine_beach.tif
+	tiff_file            = forrest19.tif
 
 	set_pan_x            = -90
 	set_pan_y            = -280
@@ -156,26 +160,24 @@ ProcessConfig = pMarineViewer
 	procs_font_size      = xlarge
 	appcast_font_size    = large
 
-	left_context[set_return]   = VIEW_POINT    = x=$(XPOS), y=$(YPOS), label=return_point
 	left_context[set_return]   = RETURN_UPDATE = points=$(XPOS),$(YPOS)
 	left_context[force_return] = VIEW_POINT    = x=$(XPOS), y=$(YPOS), label=return_point
 	left_context[force_return] = RETURN_UPDATE = points=$(XPOS),$(YPOS)
 	left_context[force_return] = RETURN        = true
 
-	right_context[return] = DEPLOY=true
-	right_context[return] = MOOS_MANUAL_OVERRIDE=false
-	right_context[return] = RETURN=false
+	right_context[return] = VIEW_POINT    = x=$(XPOS), y=$(YPOS), label=return_point
+	right_context[return] = RETURN_UPDATE = points=$(XPOS),$(YPOS)
 
-	scope = RETURN
-	scope = WPT_STAT
-	scope = VIEW_SEGLIST
-	scope = VIEW_POINT
-	scope = VIEW_POLYGON
-	scope = MVIEWER_LCLICK
-	scope = MVIEWER_RCLICK
-	scope = NAV_X
+	scope  = RETURN
+	scope  = WPT_STAT
+	scope  = VIEW_SEGLIST
+	scope  = VIEW_POINT
+	scope  = VIEW_POLYGON
+	scope  = MVIEWER_LCLICK
+	scope  = MVIEWER_RCLICK
+	scope  = NAV_X
 
-	button_one = DEPLOY # DEPLOY=true # MOOS_MANUAL_OVERRIDE=false # RETURN=false # LOITER_REGION=west
+	button_one = DEPLOY # DEPLOY=true # MOOS_MANUAL_OVERRIDE=false # RETURN=false
 	button_two = RETURN # RETURN=true
 	button_three = SLOWER # WPT_UPDATE=speed=1.5
 	button_four = FASTER # WPT_UPDATE=speed=3.5
@@ -199,3 +201,19 @@ ProcessConfig = pNodeReporter
 	platform_length = 4
 }
 
+//------------------------------------------
+// iMOOSGateway config block
+
+ProcessConfig = iMOOSGateway
+{
+    AppTick  	= 4
+    CommsTick	= 4
+
+    tcp_port = 9501
+
+    // comma separated moos variables to send to client                                                 
+    forward_to_client = DESIRED_HEADING, DESIRED_SPEED, DESIRED_RUDDER, DESIRED_THRUST, DEPLOY, IVPHELM_STATE, IVPHELM_ALLSTOP, IVPHELM_MODESET, DB_TIME, DB_UPTIME
+
+    // comma separated moos variables to block from client                                                
+    block_from_client = DEPLOY
+}
