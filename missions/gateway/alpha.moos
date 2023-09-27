@@ -20,10 +20,10 @@ LongOrigin = -71.087589
 // Antler configuration  block
 ProcessConfig = ANTLER
 {
-  MSBetweenLaunches = 200
+    MSBetweenLaunches = 200
 
-  Run = MOOSDB        @ NewConsole = false
-  Run = iMOOSGateway  @ NewConsole = false
+    Run = MOOSDB        @ NewConsole = false
+    Run = iMOOSGateway  @ NewConsole = false
 }
 
 //------------------------------------------
@@ -31,15 +31,15 @@ ProcessConfig = ANTLER
 
 ProcessConfig = iMOOSGateway
 {
-  AppTick  	= 4
-  CommsTick	= 4
+    AppTick  	= 10
+    CommsTick	= 10
 
-  tcp_port = 9501
-	
-	// comma separated moos variables to send to client                                                 
-  forward_to_client = DESIRED_HEADING, DESIRED_SPEED, DESIRED_RUDDER, DESIRED_THRUST, DEPLOY, IVPHELM_STATE, IVPHELM_ALLSTOP, IVPHELM_MODESET, DB_TIME, DB_UPTIME
-  
-  // comma separated moos variables to block from client                                                
-  block_from_client = DEPLOY
+    tcp_port = 9501
+
+    // comma separated moos variables to send to client                                                 
+    forward_to_client = DESIRED_RUDDER, DESIRED_THRUST
+
+    // comma separated moos variables to block from client                                                
+    block_from_client = DEPLOY
 }
 

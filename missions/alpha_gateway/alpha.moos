@@ -8,9 +8,9 @@ ServerPort   = 9000
 Community    = alpha
 MOOSTimeWarp = 1
 
-// Forest Lake
-LatOrigin  = 43.825300 
-LongOrigin = -70.330400 
+// Sydney Regatta
+LatOrigin  = -33.7228
+LongOrigin = 150.6740 
 
 //------------------------------------------
 // Antler configuration  block
@@ -19,15 +19,13 @@ ProcessConfig = ANTLER
 	MSBetweenLaunches = 200
 
 	Run = MOOSDB        @ NewConsole = false
+    Run = iMOOSGateway  @ NewConsole = false
 	Run = pLogger       @ NewConsole = false
-	Run = uSimMarineV22 @ NewConsole = false
-	Run = pMarinePIDV22 @ NewConsole = false
 	Run = pHelmIvP      @ NewConsole = false
 	Run = pMarineViewer	@ NewConsole = false
 	Run = uProcessWatch	@ NewConsole = false
 	Run = pNodeReporter	@ NewConsole = false
 	Run = pRealm	    @ NewConsole = false
-    Run = iMOOSGateway  @ NewConsole = false
 }
 
 //------------------------------------------
@@ -70,23 +68,6 @@ ProcessConfig = uProcessWatch
 }
 
 //------------------------------------------
-// uSimMarineV22 config block
-
-ProcessConfig = uSimMarineV22
-{
-	AppTick  	= 4
-	CommsTick	= 4
-
-	start_pos = x=0, y=-20, heading=180, speed=0
-
-	prefix        = NAV
-
-	turn_rate     = 40
-	thrust_map    = 0:0, 20:1, 40:2, 60:3, 80:4, 100:5
-	//thrust_reflect = true
-}
-
-//------------------------------------------
 // pHelmIvP config block
 
 ProcessConfig = pHelmIvP
@@ -100,38 +81,6 @@ ProcessConfig = pHelmIvP
 }
 
 //------------------------------------------
-// pMarinePID config block
-
-ProcessConfig = pMarinePIDV22
-{
-	AppTick    = 20
-	CommsTick  = 20
-
-	verbose       = true
-	depth_control = false
-
-	// Yaw PID controller
-	yaw_pid_kp		 = 1.2
-	yaw_pid_kd		 = 0.0
-	yaw_pid_ki		 = 0.3
-	yaw_pid_integral_limit = 0.07
-
-	// Speed PID controller
-	speed_pid_kp		 = 1.0
-	speed_pid_kd		 = 0.0
-	speed_pid_ki		 = 0.0
-	speed_pid_integral_limit = 0.07
-
-	// MAXIMUMS
-	maxrudder    = 100
-	maxthrust    = 100
-
-	// A non-zero SPEED_FACTOR overrides use of SPEED_PID
-	// Will set DESIRED_THRUST = DESIRED_SPEED * SPEED_FACTOR
-	speed_factor = 20
-}
-
-//------------------------------------------
 // pMarineViewer config block
 
 ProcessConfig = pMarineViewer
@@ -139,12 +88,12 @@ ProcessConfig = pMarineViewer
 	AppTick    = 4
 	CommsTick  = 4
 
-	tiff_file            = forrest19.tif
+	tiff_file            = sydney.tif
 
 	set_pan_x            = -90
 	set_pan_y            = -280
-	zoom                 = 0.65
-	vehicle_shape_scale  = 1.5
+	zoom                 = 0.80
+	vehicle_shape_scale  = 2
 	hash_delta           = 50
 	hash_shade           = 0.22
 	hash_viewable        = true
@@ -153,7 +102,7 @@ ProcessConfig = pMarineViewer
 
 	// Appcast configuration
 	appcast_height       = 75
-	appcast_width        = 30
+	appcast_width        = 35
 	appcast_viewable     = true
 	appcast_color_scheme = indigo
 	nodes_font_size      = xlarge
@@ -177,7 +126,8 @@ ProcessConfig = pMarineViewer
 	scope  = MVIEWER_RCLICK
 	scope  = NAV_X
 
-	button_one = DEPLOY # DEPLOY=true # MOOS_MANUAL_OVERRIDE=false # RETURN=false
+	//button_one = DEPLOY # DEPLOY=true # MOOS_MANUAL_OVERRIDE=false # RETURN=false
+	button_one = DEPLOY # MOOS_MANUAL_OVERRIDE=false
 	button_two = RETURN # RETURN=true
 	button_three = SLOWER # WPT_UPDATE=speed=1.5
 	button_four = FASTER # WPT_UPDATE=speed=3.5
@@ -199,6 +149,8 @@ ProcessConfig = pNodeReporter
 	platform_type   = ship
 	platform_color  = gray
 	platform_length = 4
+
+    cross_fill_policy=fill-empty
 }
 
 //------------------------------------------
@@ -206,14 +158,9 @@ ProcessConfig = pNodeReporter
 
 ProcessConfig = iMOOSGateway
 {
-    AppTick  	= 4
-    CommsTick	= 4
+    AppTick  	= 10
+    CommsTick	= 10
 
     tcp_port = 9501
-
-    // comma separated moos variables to send to client                                                 
-    forward_to_client = DESIRED_HEADING, DESIRED_SPEED, DESIRED_RUDDER, DESIRED_THRUST, DEPLOY, IVPHELM_STATE, IVPHELM_ALLSTOP, IVPHELM_MODESET, DB_TIME, DB_UPTIME
-
-    // comma separated moos variables to block from client                                                
-    block_from_client = DEPLOY
+    forward_to_client = DESIRED_RUDDER, DESIRED_THRUST
 }
