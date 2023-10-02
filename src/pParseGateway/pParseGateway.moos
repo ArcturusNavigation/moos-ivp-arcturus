@@ -1,0 +1,9 @@
+//------------------------------------------------
+// pParseGateway config block
+
+ProcessConfig = pParseGateway
+{
+   AppTick   = 4
+   CommsTick = 4
+}
+

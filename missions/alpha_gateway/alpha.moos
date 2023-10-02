@@ -24,6 +24,7 @@ ProcessConfig = ANTLER
 	Run = pHelmIvP      @ NewConsole = false
 	Run = pMarineViewer	@ NewConsole = false
 	Run = uProcessWatch	@ NewConsole = false
+    Run = pParseGateway @ NewConsole = false
 	Run = pNodeReporter	@ NewConsole = false
 	Run = pRealm	    @ NewConsole = false
 }
@@ -126,8 +127,7 @@ ProcessConfig = pMarineViewer
 	scope  = MVIEWER_RCLICK
 	scope  = NAV_X
 
-	//button_one = DEPLOY # DEPLOY=true # MOOS_MANUAL_OVERRIDE=false # RETURN=false
-	button_one = DEPLOY # MOOS_MANUAL_OVERRIDE=false
+	button_one = DEPLOY # DEPLOY=true # MOOS_MANUAL_OVERRIDE=false # RETURN=false
 	button_two = RETURN # RETURN=true
 	button_three = SLOWER # WPT_UPDATE=speed=1.5
 	button_four = FASTER # WPT_UPDATE=speed=3.5
@@ -149,8 +149,6 @@ ProcessConfig = pNodeReporter
 	platform_type   = ship
 	platform_color  = gray
 	platform_length = 4
-
-    cross_fill_policy=fill-empty
 }
 
 //------------------------------------------
@@ -158,9 +156,18 @@ ProcessConfig = pNodeReporter
 
 ProcessConfig = iMOOSGateway
 {
-    AppTick  	= 10
-    CommsTick	= 10
+    AppTick   = 10
+    CommsTick = 10
 
     tcp_port = 9501
     forward_to_client = DESIRED_RUDDER, DESIRED_THRUST
+}
+
+//------------------------------------------
+// pParseGateway config block
+
+ProcessConfig = pParseGateway
+{
+    AppTick   = 10
+    CommsTick = 10
 }

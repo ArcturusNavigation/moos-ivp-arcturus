@@ -19,6 +19,7 @@ ADD_SUBDIRECTORY(lib)
 ADD_SUBDIRECTORY(iMOOSGateway)
 ADD_SUBDIRECTORY(lib_behaviors-test)
 ADD_SUBDIRECTORY(pOdometry)
+ADD_SUBDIRECTORY(pParseGateway)
 
 ##############################################################################
 #                           END of CMakeLists.txt
