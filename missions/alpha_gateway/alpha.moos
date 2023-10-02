@@ -160,7 +160,7 @@ ProcessConfig = iMOOSGateway
     CommsTick = 10
 
     tcp_port = 9501
-    forward_to_client = DESIRED_RUDDER, DESIRED_THRUST
+    forward_to_client = DESIRED_RUDDER, DESIRED_THRUST, NAV_X, NAV_Y
 }
 
 //------------------------------------------

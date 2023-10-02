@@ -97,7 +97,6 @@ bool ParseGateway::Iterate()
     Notify("NAV_X", m_nav_x);
     Notify("NAV_Y", m_nav_y);
 
-
     AppCastingMOOSApp::PostReport();
     return(true);
 }
