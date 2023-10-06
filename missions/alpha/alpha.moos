@@ -43,8 +43,6 @@ ProcessConfig = pLogger
 
 	AsyncLog = true
 
-	// For variables that are published in a bundle on their first post,
-	// explicitly declare their logging request
 	Log = IVPHELM_LIFE_EVENT @ 0 NOSYNC
 	Log = REPORT @ 0 NOSYNC
 	Log = BHV_SETTINGS @ 0 NOSYNC
@@ -77,16 +75,15 @@ ProcessConfig = uProcessWatch
 
 ProcessConfig = uSimMarineV22
 {
-	AppTick  	= 4
-	CommsTick	= 4
+	AppTick    = 4
+	CommsTick  = 4
 
-	start_pos = x=0, y=-20, heading=180, speed=0
+	start_pos  = x=0, y=-20, heading=180, speed=0
 
-	prefix        = NAV
+	prefix     = NAV
 
-	turn_rate     = 40
-	thrust_map    = 0:0, 20:1, 40:2, 60:3, 80:4, 100:5
-	//thrust_reflect = true
+	turn_rate  = 40
+	thrust_map = 0:0, 20:1, 40:2, 60:3, 80:4, 100:5
 }
 
 //------------------------------------------
@@ -112,8 +109,6 @@ ProcessConfig = pMarinePIDV22
 
 	verbose       = true
 	depth_control = false
-
-	// SIM_INSTABILITY = 20
 
 	// Yaw PID controller
 	yaw_pid_kp		 = 1.2
@@ -145,7 +140,6 @@ ProcessConfig = pMarineViewer
 	CommsTick  = 4
 
 	tiff_file            = forrest19.tif
-	//tiff_file          = MIT_SP.tif
 
 	set_pan_x            = -90
 	set_pan_y            = -280
@@ -157,11 +151,6 @@ ProcessConfig = pMarineViewer
 
 	trails_point_size   = 1
 
-	//op_vertex = x=-83, y=-47,    lwidth=1,lcolor=yellow,looped=true,group=moa
-	//op_vertex = x=-46.4, y=-129.2, lwidth=1,lcolor=yellow,looped=true,group=moa
-	//op_vertex = x=94.6, y=-62.2,   lwidth=1,lcolor=yellow,looped=true,group=moa
-	//op_vertex = x=58,   y=20,    lwidth=1,lcolor=yellow,looped=true,group=moa
-
 	// Appcast configuration
 	appcast_height       = 75
 	appcast_width        = 30
@@ -171,45 +160,18 @@ ProcessConfig = pMarineViewer
 	procs_font_size      = xlarge
 	appcast_font_size    = large
 
-	// datum_viewable = true
-	// datum_size     = 18
-	// gui_size = small
-
-	left_context[view_point]   = VIEW_POINT    = x=$(XPOS), y=$(YPOS), label=hello
-	left_context[view_poly]    = VIEW_POLYGON  = format=radial, x=$(XPOS), y=$(YPOS), radius=10, pts=8, edge_size=1, label=mypoly
-	left_context[view_both]    = VIEW_POINT    = x=$(XPOS), y=$(YPOS), label=hello
-	left_context[view_both]    = VIEW_POLYGON  = format=radial, x=$(XPOS), y=$(YPOS), radius=10, pts=8, edge_size=1, label=mypoly
-	left_context[set_return]   = VIEW_POINT    = x=$(XPOS), y=$(YPOS), label=return_point
-	left_context[set_return]   = RETURN_UPDATE = points=$(XPOS),$(YPOS)
-	left_context[force_return] = VIEW_POINT    = x=$(XPOS), y=$(YPOS), label=return_point
-	left_context[force_return] = RETURN_UPDATE = points=$(XPOS),$(YPOS)
-	left_context[force_return] = RETURN        = true
-	// left_context[survey-point] = DEPLOY=true
-	// left_context[survey-point] = MOOS_MANUAL_OVERRIDE=false
-	// left_context[survey-point] = RETURN=false
-
-	right_context[return] = DEPLOY=true
-	right_context[return] = MOOS_MANUAL_OVERRIDE=false
-	right_context[return] = RETURN=false
+	left_context[follow_waypoint] = VIEW_POINT = x=$(XPOS), y=$(YPOS), label=waypoint
+	left_context[follow_waypoint] = WPT_UPDATE = points=$(XPOS),$(YPOS)
+	left_context[follow_waypoint] = DEPLOY     = true
 
 	scope  = RETURN
 	scope  = WPT_STAT
-	scope  = VIEW_SEGLIST
-	scope  = VIEW_POINT
-	scope  = VIEW_POLYGON
-	scope  = MVIEWER_LCLICK
-	scope  = MVIEWER_RCLICK
 	scope  = NAV_X
+	scope  = NAV_Y
 
-	button_one = DEPLOY # DEPLOY=true # MOOS_MANUAL_OVERRIDE=false # RETURN=false
-	button_two = RETURN # RETURN=true
-	button_three = SLOWER # WPT_UPDATE=speed=1.5
-	button_four = FASTER # WPT_UPDATE=speed=3.5
-
-	action  = MENU_KEY=deploy # DEPLOY = true # RETURN = false
-	action+ = MENU_KEY=deploy # MOOS_MANUAL_OVERRIDE=false
-	action  = RETURN=true
-	action  = UPDATES_RETURN=speed=1.4
+	button_one = DEPLOY # DEPLOY=true # MOOS_MANUAL_OVERRIDE=false
+	button_two = SLOWER # WPT_UPDATE=speed=1.5
+	button_three = FASTER # WPT_UPDATE=speed=3.5
 }
 
 //------------------------------------------
