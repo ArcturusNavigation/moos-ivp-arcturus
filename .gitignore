@@ -50,6 +50,7 @@ MOOSLog*/
 # Build dirs
 build/
 bin/
+/lib
 
 # Temp files (emacs, etc)
 *#
