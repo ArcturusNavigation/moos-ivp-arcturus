@@ -55,3 +55,4 @@ bin/
 # Temp files (emacs, etc)
 *#
 *~
+.vscode
