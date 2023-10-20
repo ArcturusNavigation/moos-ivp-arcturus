@@ -17,9 +17,9 @@ INCLUDE_DIRECTORIES(${LOCAL_LIBRARY_DIRS})
 #============================================================================
 ADD_SUBDIRECTORY(lib)
 ADD_SUBDIRECTORY(iMOOSGateway)
-ADD_SUBDIRECTORY(lib_behaviors-test)
 ADD_SUBDIRECTORY(pOdometry)
 ADD_SUBDIRECTORY(pParseGateway)
+ADD_SUBDIRECTORY(pParseWaypoint)
 
 ##############################################################################
 #                           END of CMakeLists.txt

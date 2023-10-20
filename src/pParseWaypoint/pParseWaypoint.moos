@@ -1,0 +1,9 @@
+//------------------------------------------------
+// pParseWaypoint config block
+
+ProcessConfig = pParseWaypoint
+{
+   AppTick   = 4
+   CommsTick = 4
+}
+
