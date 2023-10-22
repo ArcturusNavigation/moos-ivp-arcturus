@@ -1,0 +1,22 @@
+//------------------------------------------------
+// iGazeboVessel config block
+
+ProcessConfig = iGazeboVessel
+{
+  AppTick   = 4
+  CommsTick = 4
+
+	// R Factor
+	rfactor = 1.0
+
+	// Max Rudder (0,180]
+	max_rudder = 30.0
+
+	// Min/Max Thrust
+	max_thrust = 1.0
+	min_thrust = -1.0
+
+	// Drive Mode: ("normal"|"aggro"|"rotate"|"direct")
+	drive_mode = normal
+}
+
