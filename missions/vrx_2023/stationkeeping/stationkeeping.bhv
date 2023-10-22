@@ -1,4 +1,4 @@
-//--------    FILE: alpha.bhv   -------------
+//--------    FILE: stationkeeping.bhv   -------------
 
 initialize   DEPLOY = false
 
@@ -16,5 +16,5 @@ Behavior=BHV_Waypoint
 	speed = 2.0
 	capture_radius = 5.0
 	slip_radius = 10.0
-	points = 0,-20
 }
+

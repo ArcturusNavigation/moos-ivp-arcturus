@@ -1,11 +1,11 @@
 //-------------------------------------------------
 // NAME: MIT Arcturus
-// FILE: alpha.moos
+// FILE: stationkeeping.moos
 //-------------------------------------------------
 
 ServerHost   = localhost
 ServerPort   = 9000
-Community    = alpha
+Community    = stationkeeping
 MOOSTimeWarp = 1
 
 // Sydney Regatta
@@ -18,16 +18,17 @@ ProcessConfig = ANTLER
 {
 	MSBetweenLaunches = 200
 
-	Run = MOOSDB        @ NewConsole = false
-    Run = iMOOSGateway  @ NewConsole = false
-    Run = pParseGateway @ NewConsole = false
-	Run = pLogger       @ NewConsole = false
-	Run = pHelmIvP      @ NewConsole = false
-	Run = pMarineViewer	@ NewConsole = false
-    Run = pMarinePIDV22 @ NewConsole = false
-	Run = uProcessWatch	@ NewConsole = false
-	Run = pNodeReporter	@ NewConsole = false
-	Run = pRealm	    @ NewConsole = false
+	Run = MOOSDB         @ NewConsole = false
+    Run = iMOOSGateway   @ NewConsole = false
+    Run = pParseGateway  @ NewConsole = false
+    Run = pParseWaypoint @ NewConsole = false
+	Run = pLogger        @ NewConsole = false
+	Run = pHelmIvP       @ NewConsole = false
+	Run = pMarineViewer	 @ NewConsole = false
+    Run = pMarinePIDV22  @ NewConsole = false
+	Run = uProcessWatch  @ NewConsole = false
+	Run = pNodeReporter  @ NewConsole = false
+	Run = pRealm	     @ NewConsole = false
 }
 
 //------------------------------------------
@@ -77,7 +78,7 @@ ProcessConfig = pHelmIvP
 	AppTick    = 4
 	CommsTick  = 4
 
-	behaviors  = alpha.bhv
+	behaviors  = stationkeeping.bhv
 	domain     = course:0:359:360
 	domain     = speed:0:4:41
 }
@@ -186,6 +187,15 @@ ProcessConfig = iMOOSGateway
 // pParseGateway config block
 
 ProcessConfig = pParseGateway
+{
+    AppTick   = 10
+    CommsTick = 10
+}
+
+//------------------------------------------
+// pParseWaypoint config block
+
+ProcessConfig = pParseWaypoint
 {
     AppTick   = 10
     CommsTick = 10

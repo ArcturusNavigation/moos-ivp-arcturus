@@ -1,30 +1,34 @@
-//--------    FILE: arcturus.bhv   -------------
+//-------------------------------------------------
+// NAME: MIT Arcturus
+// FILE: wayfinding.moos
+//-------------------------------------------------
 
 ServerHost   = localhost
 ServerPort   = 9000
-Community    = arcturus
+Community    = wayfinding
 MOOSTimeWarp = 1
 
-// Magazine Beach
-LatOrigin  = 42.3537
-LongOrigin = -71.1134
+// Sydney Regatta
+LatOrigin  = -33.7228
+LongOrigin = 150.6740 
 
 //------------------------------------------
-// Antler configuration block
-
+// Antler configuration  block
 ProcessConfig = ANTLER
 {
 	MSBetweenLaunches = 200
 
-	Run = MOOSDB        @ NewConsole = false
-	Run = pLogger       @ NewConsole = false
-	Run = uSimMarineV22 @ NewConsole = false
-	Run = pMarinePIDV22 @ NewConsole = false
-	Run = pHelmIvP      @ NewConsole = false
-	Run = pMarineViewer	@ NewConsole = false
-	Run = uProcessWatch	@ NewConsole = false
-	Run = pNodeReporter	@ NewConsole = false
-	Run = pRealm	    @ NewConsole = false
+	Run = MOOSDB         @ NewConsole = false
+    Run = iMOOSGateway   @ NewConsole = false
+    Run = pParseGateway  @ NewConsole = false
+    Run = pParseWaypoint @ NewConsole = false
+	Run = pLogger        @ NewConsole = false
+	Run = pHelmIvP       @ NewConsole = false
+	Run = pMarineViewer	 @ NewConsole = false
+    Run = pMarinePIDV22  @ NewConsole = false
+	Run = uProcessWatch  @ NewConsole = false
+	Run = pNodeReporter  @ NewConsole = false
+	Run = pRealm	     @ NewConsole = false
 }
 
 //------------------------------------------
@@ -37,6 +41,8 @@ ProcessConfig = pLogger
 
 	AsyncLog = true
 
+	// For variables that are published in a bundle on their first post,
+	// explicitly declare their logging request
 	Log = IVPHELM_LIFE_EVENT @ 0 NOSYNC
 	Log = REPORT @ 0 NOSYNC
 	Log = BHV_SETTINGS @ 0 NOSYNC
@@ -65,22 +71,6 @@ ProcessConfig = uProcessWatch
 }
 
 //------------------------------------------
-// uSimMarineV22 config block
-
-ProcessConfig = uSimMarineV22
-{
-	AppTick   = 4
-	CommsTick = 4
-
-	start_pos = x=0, y=0, heading=180, speed=0
-
-	prefix = NAV
-
-	turn_rate  = 40
-	thrust_map = 0:0, 20:1, 40:2, 60:3, 80:4, 100:5
-}
-
-//------------------------------------------
 // pHelmIvP config block
 
 ProcessConfig = pHelmIvP
@@ -88,7 +78,7 @@ ProcessConfig = pHelmIvP
 	AppTick    = 4
 	CommsTick  = 4
 
-	behaviors  = arcturus.bhv
+	behaviors  = wayfinding.bhv
 	domain     = course:0:359:360
 	domain     = speed:0:4:41
 }
@@ -104,10 +94,8 @@ ProcessConfig = pMarinePIDV22
 	verbose       = true
 	depth_control = false
 
-	// SIM_INSTABILITY = 20
-
 	// Yaw PID controller
-	yaw_pid_kp		 = 1.5
+	yaw_pid_kp		 = 1.2
 	yaw_pid_kd		 = 0.0
 	yaw_pid_ki		 = 0.3
 	yaw_pid_integral_limit = 0.07
@@ -135,12 +123,12 @@ ProcessConfig = pMarineViewer
 	AppTick    = 4
 	CommsTick  = 4
 
-	tiff_file            = magazine_beach.tif
+	tiff_file            = sydney.tif
 
 	set_pan_x            = -90
 	set_pan_y            = -280
-	zoom                 = 0.65
-	vehicle_shape_scale  = 1.5
+	zoom                 = 0.80
+	vehicle_shape_scale  = 2
 	hash_delta           = 50
 	hash_shade           = 0.22
 	hash_viewable        = true
@@ -149,41 +137,25 @@ ProcessConfig = pMarineViewer
 
 	// Appcast configuration
 	appcast_height       = 75
-	appcast_width        = 30
+	appcast_width        = 35
 	appcast_viewable     = true
 	appcast_color_scheme = indigo
 	nodes_font_size      = xlarge
 	procs_font_size      = xlarge
 	appcast_font_size    = large
 
-	left_context[set_return]   = VIEW_POINT    = x=$(XPOS), y=$(YPOS), label=return_point
-	left_context[set_return]   = RETURN_UPDATE = points=$(XPOS),$(YPOS)
-	left_context[force_return] = VIEW_POINT    = x=$(XPOS), y=$(YPOS), label=return_point
-	left_context[force_return] = RETURN_UPDATE = points=$(XPOS),$(YPOS)
-	left_context[force_return] = RETURN        = true
+	left_context[follow_waypoint] = VIEW_POINT = x=$(XPOS), y=$(YPOS), label=waypoint
+	left_context[follow_waypoint] = WPT_UPDATE = points=$(XPOS),$(YPOS)
+	left_context[follow_waypoint] = DEPLOY     = true
 
-	right_context[return] = DEPLOY=true
-	right_context[return] = MOOS_MANUAL_OVERRIDE=false
-	right_context[return] = RETURN=false
+	scope  = RETURN
+	scope  = WPT_STAT
+	scope  = NAV_X
+	scope  = NAV_Y
 
-	scope = RETURN
-	scope = WPT_STAT
-	scope = VIEW_SEGLIST
-	scope = VIEW_POINT
-	scope = VIEW_POLYGON
-	scope = MVIEWER_LCLICK
-	scope = MVIEWER_RCLICK
-	scope = NAV_X
-
-	button_one = DEPLOY # DEPLOY=true # MOOS_MANUAL_OVERRIDE=false # RETURN=false # LOITER_REGION=west
-	button_two = RETURN # RETURN=true
-	button_three = SLOWER # WPT_UPDATE=speed=1.5
-	button_four = FASTER # WPT_UPDATE=speed=3.5
-
-	action  = MENU_KEY=deploy # DEPLOY = true # RETURN = false
-	action+ = MENU_KEY=deploy # MOOS_MANUAL_OVERRIDE=false
-	action  = RETURN=true
-	action  = UPDATES_RETURN=speed=1.4
+	button_one   = DEPLOY # DEPLOY=true # MOOS_MANUAL_OVERRIDE=false
+	button_two   = SLOWER # WPT_UPDATE=speed=1.5
+	button_three = FASTER # WPT_UPDATE=speed=3.5
 }
 
 //------------------------------------------
@@ -195,7 +167,36 @@ ProcessConfig = pNodeReporter
 	CommsTick = 2
 
 	platform_type   = ship
-	platform_color  = orange
+	platform_color  = gray
 	platform_length = 4
 }
 
+//------------------------------------------
+// iMOOSGateway config block
+
+ProcessConfig = iMOOSGateway
+{
+    AppTick   = 10
+    CommsTick = 10
+
+    tcp_port = 9501
+    forward_to_client = DESIRED_RUDDER, DESIRED_THRUST, NAV_X, NAV_Y
+}
+
+//------------------------------------------
+// pParseGateway config block
+
+ProcessConfig = pParseGateway
+{
+    AppTick   = 10
+    CommsTick = 10
+}
+
+//------------------------------------------
+// pParseWaypoint config block
+
+ProcessConfig = pParseWaypoint
+{
+    AppTick   = 10
+    CommsTick = 10
+}

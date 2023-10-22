@@ -50,8 +50,9 @@ MOOSLog*/
 # Build dirs
 build/
 bin/
-lib/
+/lib
 
 # Temp files (emacs, etc)
 *#
 *~
+.vscode
