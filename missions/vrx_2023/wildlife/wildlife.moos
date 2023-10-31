@@ -1,11 +1,11 @@
 //-------------------------------------------------
 // NAME: MIT Arcturus
-// FILE: wayfinding.moos
+// FILE: wildlife.moos
 //-------------------------------------------------
 
 ServerHost   = localhost
 ServerPort   = 9000
-Community    = wayfinding
+Community    = wildlife
 MOOSTimeWarp = 1
 
 // Sydney Regatta
@@ -21,7 +21,7 @@ ProcessConfig = ANTLER
 	Run = MOOSDB         @ NewConsole = false
     Run = iMOOSGateway   @ NewConsole = false
     Run = pParseGateway  @ NewConsole = false
-    Run = pParseWaypoint @ NewConsole = false
+    Run = pCircleAnimal  @ NewConsole = false
 	Run = pLogger        @ NewConsole = false
 	Run = pHelmIvP       @ NewConsole = false
 	Run = pMarineViewer	 @ NewConsole = false
@@ -78,7 +78,7 @@ ProcessConfig = pHelmIvP
 	AppTick    = 4
 	CommsTick  = 4
 
-	behaviors  = wayfinding.bhv
+	behaviors  = wildlife.bhv
 	domain     = course:0:359:360
 	domain     = speed:0:4:41
 }
@@ -147,7 +147,7 @@ ProcessConfig = pMarineViewer
 	scope  = NAV_X
 	scope  = NAV_Y
 
-	button_one   = DEPLOY # DEPLOY=true # MOOS_MANUAL_OVERRIDE=false
+	button_one   = DEPLOY # DEPLOY=true # MOOS_MANUAL_OVERRIDE=false # CIRCLING = one
 	button_two   = SLOWER # WPT_UPDATE=speed=1.5
 	button_three = FASTER # WPT_UPDATE=speed=3.5
 }
@@ -187,9 +187,9 @@ ProcessConfig = pParseGateway
 }
 
 //------------------------------------------
-// pParseWaypoint config block
+// pCircleAnimal config block
 
-ProcessConfig = pParseWaypoint
+ProcessConfig = pCircleAnimal
 {
     AppTick   = 10
     CommsTick = 10

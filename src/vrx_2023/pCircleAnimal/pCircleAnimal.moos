@@ -1,0 +1,9 @@
+//------------------------------------------------
+// pCircleAnimal config block
+
+ProcessConfig = pCircleAnimal
+{
+   AppTick   = 4
+   CommsTick = 4
+}
+

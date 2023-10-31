@@ -5,13 +5,12 @@ initialize   DEPLOY = false
 //----------------------------------------------
 Behavior=BHV_Waypoint
 {
-	name       = waypt_return
+	name       = waypt_path
 	pwt        = 100
 	condition  = DEPLOY = true
-	perpetual  = true
+	perpetual  = false
 	updates    = WPT_UPDATE
-	//endflag    = DEPLOY = false
-	//endflag    = MISSION = complete
+	endflag    = DEPLOY = false
 
 	speed = 2.0
 	capture_radius = 5.0

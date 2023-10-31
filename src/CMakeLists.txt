@@ -15,12 +15,13 @@ INCLUDE_DIRECTORIES(${LOCAL_LIBRARY_DIRS})
 #============================================================================
 # List the subdirectories to build...
 #============================================================================
-ADD_SUBDIRECTORY(lib)
-ADD_SUBDIRECTORY(lib_behaviors-test)
-ADD_SUBDIRECTORY(iMOOSGateway)
-ADD_SUBDIRECTORY(pOdometry)
-ADD_SUBDIRECTORY(pParseGateway)
-ADD_SUBDIRECTORY(pParseWaypoint)
+ADD_SUBDIRECTORY(allseaing_programs/lib)
+ADD_SUBDIRECTORY(allseaing_programs/lib_behaviors-test)
+ADD_SUBDIRECTORY(allseaing_programs/iMOOSGateway)
+ADD_SUBDIRECTORY(allseaing_programs/pOdometry)
+ADD_SUBDIRECTORY(allseaing_programs/pParseGateway)
+ADD_SUBDIRECTORY(allseaing_programs/pParseWaypoint)
+ADD_SUBDIRECTORY(allseaing_programs/iGazeboVessel)
 
 ##############################################################################
 #                           END of CMakeLists.txt

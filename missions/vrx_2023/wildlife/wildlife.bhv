@@ -1,0 +1,36 @@
+//--------    FILE: wildlife.bhv   -------------
+
+initialize DEPLOY   = false
+initialize CIRCLING = none
+
+//----------------------------------------------
+Behavior=BHV_Waypoint
+{
+	name      = animal1
+	pwt       = 100
+	condition = DEPLOY   = true
+	condition = CIRCLING = one
+	perpetual = false
+	updates   = ANIMAL1_UPDATE
+    endflag   = CIRCLING = two
+
+	speed = 2.0
+	capture_radius = 5.0
+	slip_radius = 10.0
+}
+
+//----------------------------------------------
+Behavior=BHV_Waypoint
+{
+	name      = animal2
+	pwt       = 100
+	condition = DEPLOY   = true
+	condition = CIRCLING = two
+	perpetual = false
+	updates   = ANIMAL2_UPDATE
+	endflag   = DEPLOY = false
+
+	speed = 2.0
+	capture_radius = 5.0
+	slip_radius = 10.0
+}

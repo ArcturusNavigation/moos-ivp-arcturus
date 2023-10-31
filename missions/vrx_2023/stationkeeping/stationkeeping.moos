@@ -144,12 +144,7 @@ ProcessConfig = pMarineViewer
 	procs_font_size      = xlarge
 	appcast_font_size    = large
 
-	left_context[follow_waypoint] = VIEW_POINT = x=$(XPOS), y=$(YPOS), label=waypoint
-	left_context[follow_waypoint] = WPT_UPDATE = points=$(XPOS),$(YPOS)
-	left_context[follow_waypoint] = DEPLOY     = true
-
 	scope  = RETURN
-	scope  = WPT_STAT
 	scope  = NAV_X
 	scope  = NAV_Y
 

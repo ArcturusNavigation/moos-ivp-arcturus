@@ -1,19 +1,17 @@
-//--------    FILE: stationkeeping.bhv   -------------
+//--------    FILE: acoustic_tracking.bhv   -------------
 
 initialize   DEPLOY = false
 
 //----------------------------------------------
 Behavior=BHV_Waypoint
 {
-	name       = waypt_station
+	name       = waypt_path
 	pwt        = 100
 	condition  = DEPLOY = true
-	perpetual  = false
+	perpetual  = true
 	updates    = WPT_UPDATE
-	endflag    = DEPLOY = false
 
-	speed = 2.0
-	capture_radius = 5.0
+	speed = 1.0
+	capture_radius = 0.0001
 	slip_radius = 10.0
 }
-
