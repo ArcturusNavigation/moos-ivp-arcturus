@@ -1,6 +1,6 @@
 //--------    FILE: acoustic_perception.bhv   -------------
 
-initialize   DEPLOY = false
+initialize DEPLOY = false
 
 //----------------------------------------------
 Behavior=BHV_Waypoint
@@ -12,6 +12,6 @@ Behavior=BHV_Waypoint
 	updates    = WPT_UPDATE
 
 	speed = 2.0
-	capture_radius = 0.1
+	capture_radius = 0.01
 	slip_radius = 10.0
 }
