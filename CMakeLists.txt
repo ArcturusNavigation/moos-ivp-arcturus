@@ -69,7 +69,7 @@ message("+++++++++++++++++++++++++++++++++++++++++")
 # Search for the moos-ivp folder
 find_path( MOOSIVP_SOURCE_TREE_BASE
            NAMES build-ivp.sh build-moos.sh configure-ivp.sh
-           PATHS "~/moos-ivp"
+           PATHS "~/moos-ivp" "/moos-ivp"
            DOC "Base directory of the MOOS-IvP source tree"
            NO_DEFAULT_PATH
 )
