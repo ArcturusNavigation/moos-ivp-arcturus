@@ -1,11 +1,11 @@
 //-------------------------------------------------
 // NAME: MIT Arcturus
-// FILE: acoustic_perception.moos
+// FILE: wamv.moos
 //-------------------------------------------------
 
 ServerHost   = localhost
 ServerPort   = 9000
-Community    = acoustic_perception
+Community    = wamv
 MOOSTimeWarp = 1
 
 // Sydney Regatta
