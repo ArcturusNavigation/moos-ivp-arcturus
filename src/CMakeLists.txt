@@ -22,6 +22,7 @@ ADD_SUBDIRECTORY(allseaing_programs/pOdometry)
 ADD_SUBDIRECTORY(allseaing_programs/pParseGateway)
 ADD_SUBDIRECTORY(allseaing_programs/pParseWaypoint)
 ADD_SUBDIRECTORY(allseaing_programs/iGazeboVessel)
+ADD_SUBDIRECTORY(allseaing_programs/pStationKeeping)
 
 ##############################################################################
 #                           END of CMakeLists.txt

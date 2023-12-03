@@ -1,0 +1,9 @@
+//------------------------------------------------
+// pStationKeeping config block
+
+ProcessConfig = pStationKeeping
+{
+   AppTick   = 4
+   CommsTick = 4
+}
+
