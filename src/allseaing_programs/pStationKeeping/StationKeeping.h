@@ -32,8 +32,8 @@ class StationKeeping : public AppCastingMOOSApp
    bool   m_first_reading;
    double m_current_x;
    double m_current_y;
-   double m_original_x;
-   double m_original_y;
+   double m_goal_x;
+   double m_goal_y;
 
  private: // State variables
 };

@@ -1,7 +1,7 @@
 /************************************************************/
-/*    NAME: Christian and Janelle                                              */
+/*    NAME: Christian and Janelle                           */
 /*    ORGN: MIT, Cambridge MA                               */
-/*    FILE: StationKeeping.cpp                                        */
+/*    FILE: StationKeeping.cpp                              */
 /*    DATE: December 29th, 1963                             */
 /************************************************************/
 
@@ -20,8 +20,8 @@ StationKeeping::StationKeeping()
 	m_first_reading = true;
 	m_current_x = 0;
 	m_current_y = 0;
-	m_original_x = 0;
-	m_original_y = 0;
+	m_goal_x = 0;
+	m_goal_y = 0;
 }
 
 //---------------------------------------------------------
@@ -36,12 +36,12 @@ StationKeeping::~StationKeeping()
 
 bool StationKeeping::OnNewMail(MOOSMSG_LIST &NewMail)
 {
-  AppCastingMOOSApp::OnNewMail(NewMail);
+	AppCastingMOOSApp::OnNewMail(NewMail);
 
-  MOOSMSG_LIST::iterator p;
-  for(p=NewMail.begin(); p!=NewMail.end(); p++) {
-    CMOOSMsg &msg = *p;
-    string key    = msg.GetKey();
+	MOOSMSG_LIST::iterator p;
+	for(p=NewMail.begin(); p!=NewMail.end(); p++) {
+		CMOOSMsg &msg = *p;
+		string key    = msg.GetKey();
 
 #if 0 // Keep these around just for template
     string comm  = msg.GetCommunity();
@@ -57,11 +57,15 @@ bool StationKeeping::OnNewMail(MOOSMSG_LIST &NewMail)
 		m_current_x = msg.GetDouble();
     else if (key == "NAV_Y")
 		m_current_y = msg.GetDouble();
+	else if (key == "GOAL_X")
+		m_goal_x = msg.GetDouble();
+	else if (key == "GOAL_Y")
+		m_goal_y = msg.GetDouble();
 
     else if(key != "APPCAST_REQ") // handled by AppCastingMOOSApp
        reportRunWarning("Unhandled Mail: " + key);
     }
-	
+
    return(true);
 }
 
@@ -70,8 +74,8 @@ bool StationKeeping::OnNewMail(MOOSMSG_LIST &NewMail)
 
 bool StationKeeping::OnConnectToServer()
 {
-   registerVariables();
-   return(true);
+	registerVariables();
+	return(true);
 }
 
 //---------------------------------------------------------
@@ -80,10 +84,10 @@ bool StationKeeping::OnConnectToServer()
 
 bool StationKeeping::Iterate()
 {
-  AppCastingMOOSApp::Iterate();
-  // Do your thing here!
-  AppCastingMOOSApp::PostReport();
-  return(true);
+	AppCastingMOOSApp::Iterate();
+	// Do your thing here!
+	AppCastingMOOSApp::PostReport();
+	return(true);
 }
 
 //---------------------------------------------------------
@@ -120,7 +124,6 @@ bool StationKeeping::OnStartUp()
 	}
   
 
-	//TO DO: subscribe to goal position from ros topic
 
 	registerVariables();	
 	return(true);
@@ -134,6 +137,8 @@ void StationKeeping::registerVariables()
 	AppCastingMOOSApp::RegisterVariables();
 	Register("NAX_X", 0);
 	Register("NAX_Y", 0);
+	Register("GOAL_X", 0);
+	Register("GOAL_Y", 0);
 }
 
 
