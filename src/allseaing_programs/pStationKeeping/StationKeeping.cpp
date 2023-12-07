@@ -85,7 +85,18 @@ bool StationKeeping::OnConnectToServer()
 bool StationKeeping::Iterate()
 {
 	AppCastingMOOSApp::Iterate();
-	// Do your thing here!
+	// NEED TO ADJUST P!!!
+	double p = 1;
+
+	double diff_x = m_goal_x - m_current_x;
+	double diff_y = m_goal_y - m_current_y;
+
+	double vel_x = diff_x * p;
+	double vel_y = diff_y * p;
+
+	Notify("VEL_X", vel_x);
+	Notify("VEL_Y", vel_y);
+
 	AppCastingMOOSApp::PostReport();
 	return(true);
 }
@@ -139,6 +150,7 @@ void StationKeeping::registerVariables()
 	Register("NAX_Y", 0);
 	Register("GOAL_X", 0);
 	Register("GOAL_Y", 0);
+
 }
 
 
