@@ -34,6 +34,7 @@ class StationKeeping : public AppCastingMOOSApp
    double m_current_y;
    double m_goal_x;
    double m_goal_y;
+   double m_goal_heading;
 
  private: // State variables
 };

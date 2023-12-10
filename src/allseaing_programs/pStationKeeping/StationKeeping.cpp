@@ -5,6 +5,9 @@
 /*    DATE: December 29th, 1963                             */
 /************************************************************/
 
+// given goal position (x, y) and goal heading
+// outputs translational velocity and goal heading (to send to controller)
+
 #include <iterator>
 #include "MBUtils.h"
 #include "ACTable.h"
@@ -22,6 +25,7 @@ StationKeeping::StationKeeping()
 	m_current_y = 0;
 	m_goal_x = 0;
 	m_goal_y = 0;
+	m_goal_heading = 0;
 }
 
 //---------------------------------------------------------
@@ -61,6 +65,8 @@ bool StationKeeping::OnNewMail(MOOSMSG_LIST &NewMail)
 		m_goal_x = msg.GetDouble();
 	else if (key == "GOAL_Y")
 		m_goal_y = msg.GetDouble();
+	else if (key == "GOAL_HEADING"):
+		m_goal_heading = msg.GetDouble();
 
     else if(key != "APPCAST_REQ") // handled by AppCastingMOOSApp
        reportRunWarning("Unhandled Mail: " + key);
@@ -96,6 +102,7 @@ bool StationKeeping::Iterate()
 
 	Notify("VEL_X", vel_x);
 	Notify("VEL_Y", vel_y);
+	Notify("GOAL_HEADING", m_goal_heading);
 
 	AppCastingMOOSApp::PostReport();
 	return(true);
@@ -150,6 +157,7 @@ void StationKeeping::registerVariables()
 	Register("NAX_Y", 0);
 	Register("GOAL_X", 0);
 	Register("GOAL_Y", 0);
+	Register("GOAL_HEADING", 0);
 
 }
 
