@@ -1,0 +1,9 @@
+//------------------------------------------------
+// pParseGoal config block
+
+ProcessConfig = pParseGoal
+{
+   AppTick   = 4
+   CommsTick = 4
+}
+
