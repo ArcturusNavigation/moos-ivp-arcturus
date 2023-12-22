@@ -36,10 +36,10 @@ find_package(ProtobufLocal REQUIRED)
 include_directories(${PROTOBUF_INCLUDE_DIRS})
 
 if(${PROTOC_VERSION} VERSION_LESS 2.5.0})
-	message("libprotobuf < 2.5.0")
+    message("libprotobuf < 2.5.0")
 else()
-	message("libprotobuf >= 2.5.0")
-	set(PROTOBUF_ALLOW_ALIAS "option allow_alias = true;")
+    message("libprotobuf >= 2.5.0")
+    set(PROTOBUF_ALLOW_ALIAS "option allow_alias = true;")
 endif()
 
 #=======================================================================
@@ -68,11 +68,11 @@ message("+++++++++++++++++++++++++++++++++++++++++")
 
 # Search for the moos-ivp folder
 find_path( MOOSIVP_SOURCE_TREE_BASE
-           NAMES build-ivp.sh build-moos.sh configure-ivp.sh
-           PATHS "~/moos-ivp" "/moos-ivp"
-           DOC "Base directory of the MOOS-IvP source tree"
-           NO_DEFAULT_PATH
-)
+    NAMES build-ivp.sh build-moos.sh configure-ivp.sh
+    PATHS "~/moos-ivp" "/moos-ivp"
+    DOC "Base directory of the MOOS-IvP source tree"
+    NO_DEFAULT_PATH
+    )
 
 if (NOT MOOSIVP_SOURCE_TREE_BASE)
     message("Please set MOOSIVP_SOURCE_TREE_BASE to  ")
@@ -93,15 +93,15 @@ LINK_DIRECTORIES(${IVP_LIBRARY_DIRS})
 #=======================================================================
 # Find the "B64"
 #=======================================================================
-                                                                                                        
+
 # b64 for the interface
 find_package(B64 REQUIRED)
 set(B64_DOC_STRING "Enable base64 functionality (requires libb64-dev: http://libb64.sourceforge.net/")
 if(B64_FOUND)
-	option(enable_b64 ${B64_DOC_STRING} ON)
+    option(enable_b64 ${B64_DOC_STRING} ON)
 else()
-	option(enable_b64 ${B64_DOC_STRING} OFF)
-	message(">> setting enable_b64 to OFF ... if you need this functionality: 1) install libb64-dev; 2) run cmake -Denable_b64=ON")
+    option(enable_b64 ${B64_DOC_STRING} OFF)
+    message(">> setting enable_b64 to OFF ... if you need this functionality: 1) install libb64-dev; 2) run cmake -Denable_b64=ON")
 endif()
 include_directories(${B64_INCLUDE_DIRS})
 
@@ -109,38 +109,38 @@ include_directories(${B64_INCLUDE_DIRS})
 # Specify Compiler Flags
 #======================================================================
 IF( ${WIN32} )
-   #---------------------------------------------
-   # Windows Compiler Flags
-   #---------------------------------------------
-   IF(MSVC)
-      # Flags for Microsoft Visual Studio
-      SET( WALL_ON OFF CACHE BOOL 
-         "tell me about all compiler warnings (-Wall) ")
-      IF(WALL_ON)
-         SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
-      ENDIF(WALL_ON)
-   ELSE(MSVC)
-      # Other Windows compilers go here
-   ENDIF(MSVC)
+    #---------------------------------------------
+    # Windows Compiler Flags
+    #---------------------------------------------
+    IF(MSVC)
+        # Flags for Microsoft Visual Studio
+        SET( WALL_ON OFF CACHE BOOL 
+            "tell me about all compiler warnings (-Wall) ")
+        IF(WALL_ON)
+            SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
+        ENDIF(WALL_ON)
+    ELSE(MSVC)
+        # Other Windows compilers go here
+    ENDIF(MSVC)
 
 ELSE( ${WIN32} )
-   #---------------------------------------------
-   # Linux and Apple Compiler Flags
-   #---------------------------------------------
-   # Force -fPIC because gcc complains when we don't use it with x86_64 code.
-   # Note sure why: -fPIC should only be needed for shared objects, and
-   # AFAIK, CMake gets that right when building shared objects. -CJC
-   SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -g -Wdeprecated-declarations")
-   IF(CMAKE_COMPILER_IS_GNUCXX)
-      # Flags for the GNU C++ Compiler
-      SET( WALL_ON OFF CACHE BOOL 
-         "tell me about all compiler warnings (-Wall) ")
-      IF(WALL_ON)
-         SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall" -C++11)
-      ENDIF( WALL_ON)
-   ELSE(CMAKE_COMPILER_IS_GNUCXX)
-    
-   ENDIF(CMAKE_COMPILER_IS_GNUCXX)
+    #---------------------------------------------
+    # Linux and Apple Compiler Flags
+    #---------------------------------------------
+    # Force -fPIC because gcc complains when we don't use it with x86_64 code.
+    # Note sure why: -fPIC should only be needed for shared objects, and
+    # AFAIK, CMake gets that right when building shared objects. -CJC
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -g -Wdeprecated-declarations")
+    IF(CMAKE_COMPILER_IS_GNUCXX)
+        # Flags for the GNU C++ Compiler
+        SET( WALL_ON OFF CACHE BOOL 
+            "tell me about all compiler warnings (-Wall) ")
+        IF(WALL_ON)
+            SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall" -C++11)
+        ENDIF( WALL_ON)
+    ELSE(CMAKE_COMPILER_IS_GNUCXX)
+
+    ENDIF(CMAKE_COMPILER_IS_GNUCXX)
 
 ENDIF( ${WIN32} )
 
