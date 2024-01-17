@@ -1,11 +1,11 @@
 //-------------------------------------------------
 // NAME: MIT Arcturus
-// FILE: wayfinding.moos
+// FILE: all_seaing.moos
 //-------------------------------------------------
 
 ServerHost   = localhost
 ServerPort   = 9000
-Community    = wayfinding
+Community    = all_seaing
 MOOSTimeWarp = 1
 
 // Sydney Regatta
@@ -26,8 +26,8 @@ ProcessConfig = ANTLER
 	Run = pHelmIvP       @ NewConsole = false
 	Run = pMarineViewer	 @ NewConsole = false
     Run = pMarinePIDV22  @ NewConsole = false
-	Run = uProcessWatch  @ NewConsole = false
-	Run = pNodeReporter  @ NewConsole = false
+	Run = uProcessWatch	 @ NewConsole = false
+	Run = pNodeReporter	 @ NewConsole = false
 	Run = pRealm	     @ NewConsole = false
 }
 
@@ -78,7 +78,7 @@ ProcessConfig = pHelmIvP
 	AppTick    = 4
 	CommsTick  = 4
 
-	behaviors  = wayfinding.bhv
+	behaviors  = all_seaing.bhv
 	domain     = course:0:359:360
 	domain     = speed:0:4:41
 }
@@ -106,7 +106,7 @@ ProcessConfig = pMarinePIDV22
 	speed_pid_ki		 = 0.0
 	speed_pid_integral_limit = 0.07
 
-	//MAXIMUMS
+	// Maximums
 	maxrudder    = 100
 	maxthrust    = 100
 
@@ -133,7 +133,7 @@ ProcessConfig = pMarineViewer
 	hash_shade           = 0.22
 	hash_viewable        = true
 
-	trails_point_size   = 1
+	trails_point_size    = 1
 
 	// Appcast configuration
 	appcast_height       = 75
@@ -144,12 +144,15 @@ ProcessConfig = pMarineViewer
 	procs_font_size      = xlarge
 	appcast_font_size    = large
 
-	scope  = NAV_X
-	scope  = NAV_Y
+	left_context[follow_wpt] = VIEW_POINT = x=$(XPOS), y=$(YPOS), label=wpt
+	left_context[follow_wpt] = WPT_UPDATE = points=$(XPOS),$(YPOS)
+	left_context[follow_wpt] = DEPLOY     = true
 
-	button_one   = DEPLOY # DEPLOY=true # MOOS_MANUAL_OVERRIDE=false
-	button_two   = SLOWER # WPT_UPDATE=speed=1.5
-	button_three = FASTER # WPT_UPDATE=speed=3.5
+	scope = DEPLOY
+	scope = NAV_X
+	scope = NAV_Y
+
+	button_one = DEPLOY # DEPLOY=true # MOOS_MANUAL_OVERRIDE=false
 }
 
 //------------------------------------------

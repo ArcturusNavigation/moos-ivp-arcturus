@@ -3,11 +3,12 @@
 #  Script: launch.sh
 #  Author: Michael Benjamin
 #  LastEd: May 20th 2019
+
 #----------------------------------------------------------
 #  Part 1: Set Exit actions and declare global var defaults
 #----------------------------------------------------------
 TIME_WARP=1
-COMMUNITY="wamv"
+COMMUNITY="all_seaing"
 GUI="yes"
 
 #----------------------------------------------------------
@@ -27,7 +28,6 @@ for ARGI; do
 		exit 1
 	fi
 done
-
 
 #----------------------------------------------------------
 #  Part 3: Launch the processes
