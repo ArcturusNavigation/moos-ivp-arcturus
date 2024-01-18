@@ -32,7 +32,9 @@ class ParseGoal : public AppCastingMOOSApp
   double m_goal_lat;
   double m_goal_lon;
   double m_goal_heading;
-  std::string m_last_rcvd
+  double m_goal_x;
+  double m_goal_y;
+  std::string m_last_rcvd;
 
   CMOOSGeodesy m_Geodesy;
   double m_lat_origin;
