@@ -100,6 +100,7 @@ bool StationKeeping::Iterate()
 	double vel_x = diff_x * p;
 	double vel_y = diff_y * p;
 
+	// OUTPUTS TO MOOSDB
 	Notify("VEL_X", vel_x);
 	Notify("VEL_Y", vel_y);
 	Notify("GOAL_HEADING", m_goal_heading);
