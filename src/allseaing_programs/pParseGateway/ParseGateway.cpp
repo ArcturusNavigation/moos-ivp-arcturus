@@ -88,7 +88,7 @@ bool ParseGateway::Iterate()
 {
     AppCastingMOOSApp::Iterate();
 
-    m_Geodesy.LatLong2LocalUTM(m_nav_lat, m_nav_lon, m_nav_y, m_nav_x);
+    m_Geodesy.LatLong2LocalUTM(m_nav_lat, m_nav_lon,m_nav_y, m_nav_x);
 
     Notify("NAV_LAT", m_nav_lat);
     Notify("NAV_LON", m_nav_lon);

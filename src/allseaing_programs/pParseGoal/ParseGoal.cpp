@@ -37,6 +37,7 @@ bool ParseGoal::OnNewMail(MOOSMSG_LIST &NewMail)
   for(p=NewMail.begin(); p!=NewMail.end(); p++) {
     CMOOSMsg &msg = *p;
     string key    = msg.GetKey();
+    string sval   = msg.GetString();
 
 #if 0 // Keep these around just for template
     string comm  = msg.GetCommunity();
@@ -48,14 +49,22 @@ bool ParseGoal::OnNewMail(MOOSMSG_LIST &NewMail)
     bool   mstr  = msg.IsString();
 #endif
 
-     if(key == "FOO") 
-       cout << "great!";
+     if(key == "ROS_REPORT_GOAL") 
+       handleNodeReport(sval);
 
      else if(key != "APPCAST_REQ") // handled by AppCastingMOOSApp
        reportRunWarning("Unhandled Mail: " + key);
    }
 	
    return(true);
+}
+
+void ParseGoal::handleNodeReport(string report) {
+  m_last_rcvd = report;
+
+  m_goal_lat = stod(tokStringParse(report, "GOAL_LAT", ',', '='));
+  m_goal_lon = stod(tokStringParse(report, "GOAL_LON", ',', '='));
+  m_goal_heading = stod(tokStringParse(report, "GOAL_HEADING", ',', '='));
 }
 
 //---------------------------------------------------------
@@ -74,7 +83,13 @@ bool ParseGoal::OnConnectToServer()
 bool ParseGoal::Iterate()
 {
   AppCastingMOOSApp::Iterate();
-  // Do your thing here!
+
+  m_Geodesy.LatLong2LocalUTM()
+
+  Notify("GOAL_LAT", m_goal_lat);
+  Notify("GOAL_LON", m_goal_lon);
+  Notify("GOAL_HEADING", m_goal_heading);
+
   AppCastingMOOSApp::PostReport();
   return(true);
 }
@@ -122,7 +137,7 @@ bool ParseGoal::OnStartUp()
 void ParseGoal::registerVariables()
 {
   AppCastingMOOSApp::RegisterVariables();
-  // Register("FOOBAR", 0);
+  Register("ROS_REPORT_GOAL", 0);
 }
 
 

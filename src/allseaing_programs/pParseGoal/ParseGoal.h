@@ -29,6 +29,14 @@ class ParseGoal : public AppCastingMOOSApp
    void registerVariables();
 
  private: // Configuration variables
+  double m_goal_lat;
+  double m_goal_lon;
+  double m_goal_heading;
+  std::string m_last_rcvd
+
+  CMOOSGeodesy m_Geodesy;
+  double m_lat_origin;
+  double m_lon_origin;
 
  private: // State variables
 };
