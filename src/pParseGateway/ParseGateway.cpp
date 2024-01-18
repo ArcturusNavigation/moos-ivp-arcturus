@@ -36,8 +36,8 @@ bool ParseGateway::OnNewMail(MOOSMSG_LIST &NewMail)
     MOOSMSG_LIST::iterator p;
     for(p=NewMail.begin(); p!=NewMail.end(); p++) {
         CMOOSMsg &msg = *p;
-        string key    = msg.GetKey();
-        string sval  = msg.GetString(); 
+        string key  = msg.GetKey();
+        string sval = msg.GetString(); 
 
 #if 0 // Keep these around just for template
         string comm  = msg.GetCommunity();
@@ -49,9 +49,12 @@ bool ParseGateway::OnNewMail(MOOSMSG_LIST &NewMail)
         bool   mstr  = msg.IsString();
 #endif
 
-        if (key == "ROS_REPORT") 
-            handleNodeReport(sval);
+        if (key == "NAV_REPORT") 
+            handleNavReport(sval);
             
+        else if (key == "WPT_UPDATE_GPS") 
+            handleWptReport(sval);
+
         else if (key != "APPCAST_REQ")
             reportRunWarning("Unhandled Mail: " + key);
     }
@@ -60,15 +63,34 @@ bool ParseGateway::OnNewMail(MOOSMSG_LIST &NewMail)
 }
 
 //---------------------------------------------------------
-// Procedure: handleNodeReport()
+// Procedure: handleNavReport()
 
-void ParseGateway::handleNodeReport(string report) {
+void ParseGateway::handleNavReport(string report) {
     m_last_rcvd = report;
     
     m_nav_heading = stod(tokStringParse(report, "NAV_HEADING", ',', '='));
-    m_nav_lat = stod(tokStringParse(report, "NAV_LAT", ',', '='));
-    m_nav_lon = stod(tokStringParse(report, "NAV_LON", ',', '='));
-    m_nav_speed = stod(tokStringParse(report, "NAV_SPEED", ',', '='));
+    m_nav_lat     = stod(tokStringParse(report, "NAV_LAT", ',', '='));
+    m_nav_lon     = stod(tokStringParse(report, "NAV_LON", ',', '='));
+    m_nav_speed   = stod(tokStringParse(report, "NAV_SPEED", ',', '='));
+}
+
+//---------------------------------------------------------
+// Procedure: handleWptReport()
+
+void ParseGateway::handleWptReport(string report) {
+    m_last_rcvd = report;
+
+    vector<string> wpt_vec = parseString(report, ':');
+    string new_msg = "points=";
+    for (int i = 0; i < wpt_vec.size(); i++) {
+        vector<string> latlon_vec = parseString(wpt_vec[i], ',');
+        double wpt_x, wpt_y;
+        m_Geodesy.LatLong2LocalUTM(stod(latlon_vec[0]), stod(latlon_vec[1]), wpt_y, wpt_x);
+        new_msg += to_string(wpt_x) + "," + to_string(wpt_y);
+        if (i < wpt_vec.size() - 1)
+            new_msg += ":";
+    }
+    m_wpt_msg = new_msg;
 }
 
 //---------------------------------------------------------
@@ -96,6 +118,7 @@ bool ParseGateway::Iterate()
     Notify("NAV_SPEED", m_nav_speed);
     Notify("NAV_X", m_nav_x);
     Notify("NAV_Y", m_nav_y);
+    Notify("WPT_UPDATE", m_wpt_msg);
 
     AppCastingMOOSApp::PostReport();
     return(true);
@@ -165,7 +188,8 @@ void ParseGateway::geodesySetup() {
 void ParseGateway::registerVariables()
 {
     AppCastingMOOSApp::RegisterVariables();
-    Register("ROS_REPORT", 0);
+    Register("NAV_REPORT", 0);
+    Register("WPT_UPDATE_GPS", 0);
 }
 
 
@@ -180,15 +204,11 @@ bool ParseGateway::buildReport()
 
     ACTable actab(2);
     actab << "last received msg: " << m_last_rcvd;
-    actab << "lat: " << to_string(m_nav_lat);
-    actab << "lon: " << to_string(m_nav_lon);
+    actab << "lat: "   << to_string(m_nav_lat);
+    actab << "lon: "   << to_string(m_nav_lon);
     actab << "nav_x: " << to_string(m_nav_x);
     actab << "nav_y: " << to_string(m_nav_y);
     m_msgs << actab.getFormattedString();
 
     return(true);
 }
-
-
-
-

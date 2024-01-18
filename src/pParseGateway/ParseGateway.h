@@ -28,7 +28,8 @@ class ParseGateway : public AppCastingMOOSApp
 
     protected:
         void registerVariables();
-        void handleNodeReport(std::string report);
+        void handleNavReport(std::string report);
+        void handleWptReport(std::string report);
         void geodesySetup();
 
     private:
@@ -38,6 +39,8 @@ class ParseGateway : public AppCastingMOOSApp
         double m_nav_y;
         double m_nav_speed;
         double m_nav_heading;
+
+        std::string m_wpt_msg;
         std::string m_last_rcvd;
 
         CMOOSGeodesy m_Geodesy;

@@ -21,7 +21,6 @@ ProcessConfig = ANTLER
 	Run = MOOSDB         @ NewConsole = false
     Run = iMOOSGateway   @ NewConsole = false
     Run = pParseGateway  @ NewConsole = false
-    Run = pParseWaypoint @ NewConsole = false
 	Run = pLogger        @ NewConsole = false
 	Run = pHelmIvP       @ NewConsole = false
 	Run = pMarineViewer	 @ NewConsole = false
@@ -189,11 +188,3 @@ ProcessConfig = pParseGateway
     CommsTick = 10
 }
 
-//------------------------------------------
-// pParseWaypoint config block
-
-ProcessConfig = pParseWaypoint
-{
-    AppTick   = 10
-    CommsTick = 10
-}
