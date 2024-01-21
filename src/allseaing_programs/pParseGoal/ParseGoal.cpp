@@ -84,7 +84,7 @@ bool ParseGoal::Iterate()
 {
   AppCastingMOOSApp::Iterate();
 
-  m_Geodesy.LatLong2LocalUTM()
+  m_Geodesy.LatLong2LocalUTM(m_goal_lat, m_goal_lon, m_goal_y, m_goal_x);
 
   Notify("GOAL_LAT", m_goal_lat);
   Notify("GOAL_LON", m_goal_lon);
@@ -127,9 +127,31 @@ bool ParseGoal::OnStartUp()
 
   }
   
+  geodesySetup();
   registerVariables();	
   return(true);
 }
+
+//---------------------------------------------------------
+// Procedure: geodesySetup()
+
+void ParseGateway::geodesySetup() {
+    // Get Latitude Origin from .MOOS Mission File
+    bool latOK = m_MissionReader.GetValue("LatOrigin", m_lat_origin);
+    if(!latOK)
+        reportConfigWarning("Latitude origin missing in MOOS file.");
+
+    // Get Longitude Origin from .MOOS Mission File
+    bool lonOK = m_MissionReader.GetValue("LongOrigin", m_lon_origin);
+    if(!lonOK)
+        reportConfigWarning("Longitude origin missing in MOOS file.");
+
+    // Initialise CMOOSGeodesy object
+    bool geoOK = m_Geodesy.Initialise(m_lat_origin, m_lon_origin);
+    if(!geoOK)
+        reportConfigWarning("Geodesy::Initialise() failed. Invalid origin.");
+}
+
 
 //---------------------------------------------------------
 // Procedure: registerVariables()
@@ -147,18 +169,16 @@ void ParseGoal::registerVariables()
 bool ParseGoal::buildReport() 
 {
   m_msgs << "============================================" << endl;
-  m_msgs << "File:                                       " << endl;
+  m_msgs << "File: ParseGoal.cpp                         " << endl;
   m_msgs << "============================================" << endl;
 
   ACTable actab(4);
-  actab << "Alpha | Bravo | Charlie | Delta";
-  actab.addHeaderLines();
-  actab << "one" << "two" << "three" << "four";
+  actab << "last received msg: " << m_last_rcvd;
+  actab << "lat: " << to_string(m_goal_lat);
+  actab << "lon: " << to_string(m_goal_lon);
+  actab << "goal_x: " << to_string(m_goal_x);
+  actab << "goal_y: " << to_string(m_goal_y);
   m_msgs << actab.getFormattedString();
 
   return(true);
 }
-
-
-
-
