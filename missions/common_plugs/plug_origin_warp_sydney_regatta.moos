@@ -1,0 +1,5 @@
+MOOSTimeWarp = $(WARP)
+
+// Sydney Regatta
+LatOrigin  = -33.7228
+LongOrigin = 150.6740 

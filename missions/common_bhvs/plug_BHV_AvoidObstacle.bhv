@@ -1,0 +1,31 @@
+Behavior=BHV_AvoidObstacleV21
+{
+	name       = avd_collision
+	pwt        = 300
+	condition  = DEPLOY = true
+    templating = spawn
+	updates    = OBSTACLE_ALERT
+
+    allowable_ttc = 20
+    pwt_outer_dist = 50
+    pwt_inner_dist = 10
+    completed_dist = 60
+    min_util_cpa_dist = 8
+    max_util_cpa_dist = 16
+    use_refinery = true
+    visual_hints = obstacle_edge_color = white
+    visual_hints = obstacle_vertex_color = gray60
+    visual_hints = obstacle_vertex_size = 1
+    visual_hints = obstacle_fill_color = gray60
+    visual_hints = obstacle_fill_transparency = 0.7
+    visual_hints = buffer_min_edge_color = gray60
+    visual_hints = buffer_min_vertex_color = blue
+    visual_hints = buffer_min_vertex_size = 1
+    visual_hints = buffer_min_fill_color = gray70
+    visual_hints = buffer_min_fill_transparency = 0.25
+    visual_hints = buffer_max_edge_color = gray60
+    visual_hints = buffer_max_vertex_color = dodger_blue
+    visual_hints = buffer_max_vertex_size = 0
+    visual_hints = buffer_max_fill_color = gray70
+    visual_hints = buffer_max_fill_transparency = 0.1
+}
