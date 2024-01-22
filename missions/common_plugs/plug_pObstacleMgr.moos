@@ -8,8 +8,7 @@ ProcessConfig = pObstacleMgr
     max_pts_per_cluster = 100
     max_age_per_point = 3
 
-    alert_range = 300
+    alert_range = 20
 
     ignore_range = 350
-    lasso = false
 }

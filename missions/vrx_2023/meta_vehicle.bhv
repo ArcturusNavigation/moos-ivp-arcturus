@@ -1,0 +1,4 @@
+initialize DEPLOY = false
+
+#include ../common_bhvs/plug_BHV_Waypoint.bhv
+#include ../common_bhvs/plug_BHV_AvoidObstacle.bhv

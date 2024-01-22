@@ -3,10 +3,9 @@ Behavior=BHV_Waypoint
 	name      = follow_wpt
 	pwt       = 100
 	condition = DEPLOY = true
-	perpetual = true
-    templating = spawn
 	updates   = WPT_UPDATE
     endflag   = DEPLOY = false
+    perpetual = true
 
 	speed = 2.0
 	capture_radius = 5.0
