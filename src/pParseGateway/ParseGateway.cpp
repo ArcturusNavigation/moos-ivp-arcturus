@@ -6,35 +6,23 @@
 /************************************************************/
 
 #include <iterator>
+#include <string>
 #include "MBUtils.h"
 #include "ACTable.h"
 #include "ParseGateway.h"
 
 using namespace std;
 
-//---------------------------------------------------------
-// Constructor()
+ParseGateway::ParseGateway(){}
 
-ParseGateway::ParseGateway()
-{
-}
-
-//---------------------------------------------------------
-// Destructor
-
-ParseGateway::~ParseGateway()
-{
-}
-
-//---------------------------------------------------------
-// Procedure: OnNewMail()
+ParseGateway::~ParseGateway(){}
 
 bool ParseGateway::OnNewMail(MOOSMSG_LIST &NewMail)
 {
     AppCastingMOOSApp::OnNewMail(NewMail);
 
     MOOSMSG_LIST::iterator p;
-    for(p=NewMail.begin(); p!=NewMail.end(); p++) {
+    for (p=NewMail.begin(); p!=NewMail.end(); p++) {
         CMOOSMsg &msg = *p;
         string key  = msg.GetKey();
         string sval = msg.GetString(); 
@@ -54,6 +42,9 @@ bool ParseGateway::OnNewMail(MOOSMSG_LIST &NewMail)
             
         else if (key == "WPT_UPDATE_GPS") 
             handleWptReport(sval);
+        
+        else if (key == "TRACKED_FEATURE_GPS")
+            handleFeatureReport(sval);
 
         else if (key != "APPCAST_REQ")
             reportRunWarning("Unhandled Mail: " + key);
@@ -62,9 +53,6 @@ bool ParseGateway::OnNewMail(MOOSMSG_LIST &NewMail)
     return(true);
 }
 
-//---------------------------------------------------------
-// Procedure: handleNavReport()
-
 void ParseGateway::handleNavReport(string report) {
     m_last_rcvd = report;
     
@@ -72,10 +60,8 @@ void ParseGateway::handleNavReport(string report) {
     m_nav_lat     = stod(tokStringParse(report, "NAV_LAT", ',', '='));
     m_nav_lon     = stod(tokStringParse(report, "NAV_LON", ',', '='));
     m_nav_speed   = stod(tokStringParse(report, "NAV_SPEED", ',', '='));
+    m_Geodesy.LatLong2LocalUTM(m_nav_lat, m_nav_lon, m_nav_y, m_nav_x);
 }
-
-//---------------------------------------------------------
-// Procedure: handleWptReport()
 
 void ParseGateway::handleWptReport(string report) {
     m_last_rcvd = report;
@@ -93,24 +79,27 @@ void ParseGateway::handleWptReport(string report) {
     m_wpt_msg = new_msg;
 }
 
-//---------------------------------------------------------
-// Procedure: OnConnectToServer()
+void ParseGateway::handleFeatureReport(string report) {
+    m_last_rcvd = report;
 
-bool ParseGateway::OnConnectToServer()
-{
+    double x_gps = stod(tokStringParse(report, "x", ',', '='));
+    double y_gps = stod(tokStringParse(report, "y", ',', '='));
+    string label = tokStringParse(report, "label", ',', '=');
+
+    double x_utm, y_utm;
+    m_Geodesy.LatLong2LocalUTM(x_gps, y_gps, x_utm, y_utm);
+    string feature_msg = "x=" + to_string(x_utm) + ",y=" + to_string(y_utm) + ",label=" + label;
+    Notify("TRACKED_FEATURE", feature_msg);
+}
+
+bool ParseGateway::OnConnectToServer() {
     registerVariables();
     return(true);
 }
 
-//---------------------------------------------------------
-// Procedure: Iterate()
-//            happens AppTick times per second
-
-bool ParseGateway::Iterate()
-{
+// Called AppTick times per second
+bool ParseGateway::Iterate() {
     AppCastingMOOSApp::Iterate();
-
-    m_Geodesy.LatLong2LocalUTM(m_nav_lat, m_nav_lon, m_nav_y, m_nav_x);
 
     Notify("NAV_LAT", m_nav_lat);
     Notify("NAV_LON", m_nav_lon);
@@ -124,46 +113,38 @@ bool ParseGateway::Iterate()
     return(true);
 }
 
-//---------------------------------------------------------
-// Procedure: OnStartUp()
-//            happens before connection is open
-
-bool ParseGateway::OnStartUp()
-{
+// Called before connection is open
+bool ParseGateway::OnStartUp() {
     AppCastingMOOSApp::OnStartUp();
 
     STRING_LIST sParams;
     m_MissionReader.EnableVerbatimQuoting(false);
-    if(!m_MissionReader.GetConfiguration(GetAppName(), sParams))
+    if (!m_MissionReader.GetConfiguration(GetAppName(), sParams))
         reportConfigWarning("No config block found for " + GetAppName());
 
     STRING_LIST::iterator p;
-    for(p=sParams.begin(); p!=sParams.end(); p++) {
+    for (p=sParams.begin(); p!=sParams.end(); p++) {
         string orig  = *p;
         string line  = *p;
         string param = tolower(biteStringX(line, '='));
         string value = line;
 
         bool handled = false;
-        if(param == "foo") {
+        if (param == "foo") {
             handled = true;
         }
-        else if(param == "bar") {
+        else if (param == "bar") {
             handled = true;
         }
 
         if(!handled)
             reportUnhandledConfigWarning(orig);
-
     }
     
     geodesySetup();
     registerVariables();	
     return(true);
 }
-
-//---------------------------------------------------------
-// Procedure: geodesySetup()
 
 void ParseGateway::geodesySetup() {
     // Get Latitude Origin from .MOOS Mission File
@@ -190,6 +171,7 @@ void ParseGateway::registerVariables()
     AppCastingMOOSApp::RegisterVariables();
     Register("NAV_REPORT", 0);
     Register("WPT_UPDATE_GPS", 0);
+    Register("OBSTACLE_ALERT_GPS", 0);
 }
 
 

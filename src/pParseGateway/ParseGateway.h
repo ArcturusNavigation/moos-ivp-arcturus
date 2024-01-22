@@ -1,7 +1,7 @@
 /************************************************************/
-/*    NAME: Toya Takahashi                                              */
+/*    NAME: Toya Takahashi                                  */
 /*    ORGN: MIT, Cambridge MA                               */
-/*    FILE: ParseGateway.h                                          */
+/*    FILE: ParseGateway.h                                  */
 /*    DATE: December 29th, 1963                             */
 /************************************************************/
 
@@ -30,6 +30,7 @@ class ParseGateway : public AppCastingMOOSApp
         void registerVariables();
         void handleNavReport(std::string report);
         void handleWptReport(std::string report);
+        void handleFeatureReport(std::string report);
         void geodesySetup();
 
     private:
