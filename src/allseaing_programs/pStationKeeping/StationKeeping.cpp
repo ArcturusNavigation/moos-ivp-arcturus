@@ -65,7 +65,7 @@ bool StationKeeping::OnNewMail(MOOSMSG_LIST &NewMail)
 		m_goal_x = msg.GetDouble();
 	else if (key == "GOAL_Y")
 		m_goal_y = msg.GetDouble();
-	else if (key == "GOAL_HEADING"):
+	else if (key == "GOAL_HEADING")
 		m_goal_heading = msg.GetDouble();
 
     else if(key != "APPCAST_REQ") // handled by AppCastingMOOSApp
