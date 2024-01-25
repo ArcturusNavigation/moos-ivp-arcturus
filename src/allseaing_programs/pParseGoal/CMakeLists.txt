@@ -13,6 +13,7 @@ ADD_EXECUTABLE(pParseGoal ${SRC})
 
 TARGET_LINK_LIBRARIES(pParseGoal
    ${MOOS_LIBRARIES}
+   ${MOOSGeodesy_LIBRARIES}
    apputil
    mbutil
    m

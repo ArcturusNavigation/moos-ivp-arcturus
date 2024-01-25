@@ -9,6 +9,7 @@
 #define ParseGoal_HEADER
 
 #include "MOOS/libMOOS/Thirdparty/AppCasting/AppCastingMOOSApp.h"
+#include "MOOS/libMOOSGeodesy/MOOSGeodesy.h"
 
 class ParseGoal : public AppCastingMOOSApp
 {
@@ -27,6 +28,8 @@ class ParseGoal : public AppCastingMOOSApp
 
  protected:
    void registerVariables();
+   void handleNodeReport(std::string report);
+   void geodesySetup();
 
  private: // Configuration variables
   double m_goal_lat;
@@ -34,11 +37,12 @@ class ParseGoal : public AppCastingMOOSApp
   double m_goal_heading;
   double m_goal_x;
   double m_goal_y;
+  double m_lat_origin;
+  double m_lon_origin;
   std::string m_last_rcvd;
 
   CMOOSGeodesy m_Geodesy;
-  double m_lat_origin;
-  double m_lon_origin;
+  
 
  private: // State variables
 };

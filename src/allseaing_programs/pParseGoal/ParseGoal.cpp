@@ -135,7 +135,7 @@ bool ParseGoal::OnStartUp()
 //---------------------------------------------------------
 // Procedure: geodesySetup()
 
-void ParseGateway::geodesySetup() {
+void ParseGoal::geodesySetup() {
     // Get Latitude Origin from .MOOS Mission File
     bool latOK = m_MissionReader.GetValue("LatOrigin", m_lat_origin);
     if(!latOK)
