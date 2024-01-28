@@ -29,12 +29,13 @@ class StationKeeping : public AppCastingMOOSApp
    void registerVariables();
 
  private: // Configuration variables
-   bool   m_first_reading;
    double m_current_x;
    double m_current_y;
    double m_goal_x;
    double m_goal_y;
    double m_goal_heading;
+   double m_vel_x;
+   double m_vel_y;
 
  private: // State variables
 };

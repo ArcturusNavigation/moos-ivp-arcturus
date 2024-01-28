@@ -153,6 +153,10 @@ ProcessConfig = pMarineViewer
 	scope  = WPT_STAT
 	scope  = NAV_X
 	scope  = NAV_Y
+	scope  = GOAL_X
+	scope  = GOAL_Y
+	scope  = VEL_X
+	scope  = VEL_Y
 
 	button_one   = DEPLOY # DEPLOY=true # MOOS_MANUAL_OVERRIDE=false
 	button_two   = SLOWER # WPT_UPDATE=speed=1.5

@@ -20,12 +20,11 @@ using namespace std;
 
 StationKeeping::StationKeeping()
 {
-	m_first_reading = true;
-	m_current_x = 0;
-	m_current_y = 0;
-	m_goal_x = 0;
-	m_goal_y = 0;
-	m_goal_heading = 0;
+	// m_current_x = 0;
+	// m_current_y = 0;
+	// m_goal_x = 0;
+	// m_goal_y = 0;
+	// m_goal_heading = 0;
 }
 
 //---------------------------------------------------------
@@ -46,6 +45,7 @@ bool StationKeeping::OnNewMail(MOOSMSG_LIST &NewMail)
 	for(p=NewMail.begin(); p!=NewMail.end(); p++) {
 		CMOOSMsg &msg = *p;
 		string key    = msg.GetKey();
+		// string sval   = msg.GetString();
 
 #if 0 // Keep these around just for template
     string comm  = msg.GetCommunity();
@@ -67,8 +67,7 @@ bool StationKeeping::OnNewMail(MOOSMSG_LIST &NewMail)
 		m_goal_y = msg.GetDouble();
 	else if (key == "GOAL_HEADING")
 		m_goal_heading = msg.GetDouble();
-
-    else if(key != "APPCAST_REQ") // handled by AppCastingMOOSApp
+    else if (key != "APPCAST_REQ") // handled by AppCastingMOOSApp
        reportRunWarning("Unhandled Mail: " + key);
     }
 
@@ -92,18 +91,28 @@ bool StationKeeping::Iterate()
 {
 	AppCastingMOOSApp::Iterate();
 	// NEED TO ADJUST P!!!
+	registerVariables();
+
 	double p = 1;
 
 	double diff_x = m_goal_x - m_current_x;
 	double diff_y = m_goal_y - m_current_y;
 
-	double vel_x = diff_x * p;
-	double vel_y = diff_y * p;
+	m_vel_x = diff_x * p;
+	m_vel_y = diff_y * p;
 
-	// OUTPUTS TO MOOSDB
-	Notify("VEL_X", vel_x);
-	Notify("VEL_Y", vel_y);
+	// Notify("GOAL_X", m_goal_x);
+	// Notify("NAV_X", m_current_x);
+
+		// OUTPUTS TO MOOSDB
+	Notify("VEL_X", m_vel_x);
+	Notify("VEL_Y", m_vel_y);
 	Notify("GOAL_HEADING", m_goal_heading);
+
+	// hardcoding outputs to MOOSDB
+	// Notify("VEL_X", 5);
+	// Notify("VEL_Y", 6);
+	// Notify("GOAL_HEADING", m_goal_heading);
 
 	AppCastingMOOSApp::PostReport();
 	return(true);
@@ -169,13 +178,17 @@ void StationKeeping::registerVariables()
 bool StationKeeping::buildReport() 
 {
 	m_msgs << "============================================" << endl;
-	m_msgs << "File:                                       " << endl;
+	m_msgs << "File: StationKeeping.cpp                    " << endl;
 	m_msgs << "============================================" << endl;
 
-	ACTable actab(4);
-	actab << "Alpha | Bravo | Charlie | Delta";
-	actab.addHeaderLines();
-	actab << "one" << "two" << "three" << "four";
+	ACTable actab(2);
+	actab << "navx: " << m_current_x;
+	actab << "navy: " << m_current_y;
+	actab << "goalx: " << m_goal_x;
+	actab << "goaly: " << m_goal_y;
+	actab << "velx: " << m_vel_x;
+	actab << "vely: " << m_vel_y;
+	actab << "goalheading: " << m_goal_heading;
 	m_msgs << actab.getFormattedString();
 
 	return(true);

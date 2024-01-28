@@ -86,6 +86,8 @@ bool ParseGoal::Iterate()
 
   m_Geodesy.LatLong2LocalUTM(m_goal_lat, m_goal_lon, m_goal_y, m_goal_x);
 
+  Notify("GOAL_X", m_goal_x);
+  Notify("GOAL_Y", m_goal_y);
   Notify("GOAL_LAT", m_goal_lat);
   Notify("GOAL_LON", m_goal_lon);
   Notify("GOAL_HEADING", m_goal_heading);
@@ -172,7 +174,7 @@ bool ParseGoal::buildReport()
   m_msgs << "File: ParseGoal.cpp                         " << endl;
   m_msgs << "============================================" << endl;
 
-  ACTable actab(4);
+  ACTable actab(2);
   actab << "last received msg: " << m_last_rcvd;
   actab << "lat: " << to_string(m_goal_lat);
   actab << "lon: " << to_string(m_goal_lon);
