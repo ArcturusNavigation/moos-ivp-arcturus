@@ -163,8 +163,8 @@ bool StationKeeping::OnStartUp()
 void StationKeeping::registerVariables()
 {
 	AppCastingMOOSApp::RegisterVariables();
-	Register("NAX_X", 0);
-	Register("NAX_Y", 0);
+	Register("NAV_X", 0);
+	Register("NAV_Y", 0);
 	Register("GOAL_X", 0);
 	Register("GOAL_Y", 0);
 	Register("GOAL_HEADING", 0);
