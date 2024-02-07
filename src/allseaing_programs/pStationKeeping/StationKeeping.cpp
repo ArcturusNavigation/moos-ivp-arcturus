@@ -93,16 +93,13 @@ bool StationKeeping::Iterate()
 	// NEED TO ADJUST P!!!
 	registerVariables();
 
-	double p = 1;
+	double p = 0.5;
 
 	double diff_x = m_goal_x - m_current_x;
 	double diff_y = m_goal_y - m_current_y;
 
 	m_vel_x = diff_x * p;
 	m_vel_y = diff_y * p;
-
-	// Notify("GOAL_X", m_goal_x);
-	// Notify("NAV_X", m_current_x);
 
 		// OUTPUTS TO MOOSDB
 	Notify("VEL_X", m_vel_x);

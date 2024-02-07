@@ -49,7 +49,7 @@ bool ParseGateway::OnNewMail(MOOSMSG_LIST &NewMail)
         bool   mstr  = msg.IsString();
 #endif
 
-        if (key == "ROS_REPORT") 
+        if (key == "NAV_REPORT") 
             handleNodeReport(sval);
             
         else if (key != "APPCAST_REQ")
@@ -165,7 +165,7 @@ void ParseGateway::geodesySetup() {
 void ParseGateway::registerVariables()
 {
     AppCastingMOOSApp::RegisterVariables();
-    Register("ROS_REPORT", 0);
+    Register("NAV_REPORT", 0);
 }
 
 
