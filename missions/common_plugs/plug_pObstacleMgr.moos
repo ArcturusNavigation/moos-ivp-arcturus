@@ -1,0 +1,14 @@
+ProcessConfig = pObstacleMgr
+{
+    AppTick   = 10
+    CommsTick = 10
+
+    point_var = TRACKED_FEATURE
+    
+    max_pts_per_cluster = 100
+    max_age_per_point = 3
+
+    alert_range = 20
+
+    ignore_range = 350
+}

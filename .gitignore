@@ -44,6 +44,9 @@
 *.moos++
 *._moos
 *._bhv
+targ_*
+LOG_*
+MOOS*_
 .LastOpenedMOOSLogDirectory
 MOOSLog*/
 

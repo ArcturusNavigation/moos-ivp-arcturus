@@ -24,6 +24,11 @@ ADD_SUBDIRECTORY(allseaing_programs/pParseWaypoint)
 ADD_SUBDIRECTORY(allseaing_programs/iGazeboVessel)
 ADD_SUBDIRECTORY(allseaing_programs/pStationKeeping)
 ADD_SUBDIRECTORY(allseaing_programs/pParseGoal)
+# ADD_SUBDIRECTORY(lib)
+# ADD_SUBDIRECTORY(iMOOSGateway)
+# ADD_SUBDIRECTORY(pParseGateway)
+# ADD_SUBDIRECTORY(iGazeboVessel)
+# ADD_SUBDIRECTORY(pStationKeeping)
 
 ##############################################################################
 #                           END of CMakeLists.txt

@@ -1,0 +1,36 @@
+ProcessConfig = pMarineViewer
+{
+	AppTick    = 4
+	CommsTick  = 4
+
+	tiff_file            = sydney.tif
+
+	set_pan_x            = -90
+	set_pan_y            = -280
+	zoom                 = 0.80
+	vehicle_shape_scale  = 2
+	hash_delta           = 50
+	hash_shade           = 0.22
+	hash_viewable        = true
+
+	trails_point_size    = 1
+
+	// Appcast configuration
+	appcast_height       = 75
+	appcast_width        = 35
+	appcast_viewable     = true
+	appcast_color_scheme = indigo
+	nodes_font_size      = xlarge
+	procs_font_size      = xlarge
+	appcast_font_size    = large
+
+	left_context[follow_wpt] = VIEW_POINT = x=$(XPOS), y=$(YPOS), label=wpt
+	left_context[follow_wpt] = WPT_UPDATE = points=$(XPOS),$(YPOS)
+	left_context[follow_wpt] = DEPLOY     = true
+
+	scope = DEPLOY
+	scope = NAV_X
+	scope = NAV_Y
+
+	button_one = DEPLOY # DEPLOY=true # MOOS_MANUAL_OVERRIDE=false
+}
