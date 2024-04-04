@@ -1,5 +1,5 @@
 ServerHost = localhost
-ServerPort = $(VPORT)
+ServerPort = $(MOOS_PORT)
 Community  = $(VNAME)
 
 // #include ../common_plugs/plug_origin_warp_sydney_regatta.moos
@@ -18,6 +18,9 @@ ProcessConfig = ANTLER
 	Run = pNodeReporter	 @ NewConsole = false
     Run = iMOOSGateway   @ NewConsole = false
 	Run = pRealm	     @ NewConsole = false
+	Run = pParseGateway  @ NewConsole = false
+	Run = pShare		 @ NewConsole = false
+//	Run = uFldMessageHandler @ NewConsole = false
 }
 
 #include ../common_plugs/plug_pLogger.moos
@@ -25,3 +28,5 @@ ProcessConfig = ANTLER
 #include ../common_plugs/plug_pMarineViewer.moos
 #include ../common_plugs/plug_pNodeReporter.moos
 #include ../common_plugs/plug_iMOOSGateway.moos
+#include ../common_plugs/plug_pParseGateway.moos
+#include ../common_plugs/plug_pShare.moos

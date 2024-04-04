@@ -1,10 +1,14 @@
 #!/bin/bash -e
 WARP=1
-VNAME="fishnships"
-VPORT="9002"
-SHARE_LISTEN="9102"
+
+IP_ADDR="localhost"
+MOOS_PORT="9001"
+PSHARE_PORT="9201"
+
 SHORE_IP="localhost"
-SHORE_LISTEN="9100"
+SHORE_PSHARE="9200"
+VNAME="fishnships"
+
 
 #----------------------------------------------------------
 #  Part 1: Check for and handle command-line arguments
@@ -16,6 +20,8 @@ for ARGI; do
         exit 0;
     elif [ "${ARGI//[^0-9]/}" = "$ARGI" -a "$WARP" = 1 ]; then 
         WARP=$ARGI
+    elif [ "${ARGI:0:8}" = "--shore=" ]; then
+        SHORE_IP="${ARGI#--shore=*}"
     else 
         echo "Bad argument:" $ARGI " Exiting with code: 1"
         exit 1
@@ -28,15 +34,12 @@ done
 printf "Preparing vehicle .moos file...\n"
 nsplug meta_vehicle.moos targ_$VNAME.moos -f \
     WARP=$WARP                               \
-    VNAME=$VNAME                             \
-    VPORT=$VPORT                             \
-    SHARE_LISTEN=$SHARE_LISTEN               \
-    SHORE_IP=$SHORE_IP                       \
-    SHORE_LISTEN=$SHORE_LISTEN
-
-printf "Preparing vehicle .bhv file...\n"
-nsplug meta_vehicle.bhv targ_$VNAME.bhv -f   \
-    VNAME=$VNAME                             
+    PSHARE_PORT=$PSHARE_PORT                \   
+    VNAME=$VNAME                            \
+    IP_ADDR=$IP_ADDR                        \
+    SHORE_IP=$SHORE_IP                      \
+    SHORE_PSHARE=$SHORE_PSHARE              \
+    MOOS_PORT=$MOOS_PORT                              
 
 #----------------------------------------------------------
 #  Part 3: Launch the processes

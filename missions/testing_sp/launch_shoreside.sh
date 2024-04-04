@@ -1,9 +1,10 @@
 #!/bin/bash -e
 WARP=1
-SHORE_IP="localhost"
-NAME_SHORE="shoreside"
-PORT_SHORE="9000"
-SHORE_LISTEN="9100"
+
+IP_ADDR="localhost"
+MOOS_PORT="9000"
+PSHARE_PORT="9200"
+
 
 #----------------------------------------------------------
 #  Part 1: Check for and handle command-line arguments
@@ -15,6 +16,9 @@ for ARGI; do
         exit 0;
     elif [ "${ARGI//[^0-9]/}" = "$ARGI" -a "$WARP" = 1 ]; then 
         WARP=$ARGI
+    elif [ "${ARGI:0:5}" = "--ip=" ]; then
+        IP_ADDR="${ARGI#--ip=*}"
+	    FORCE_IP="yes"
     else 
         echo "Bad argument:" $ARGI " Exiting with code: 1"
         exit 1
@@ -27,9 +31,11 @@ done
 printf "Preparing shoreside .moos file...\n"
 nsplug meta_shoreside.moos targ_shoreside.moos -f \
     WARP=$WARP                                    \
-    SNAME=$NAME_SHORE                             \
-    SPORT=$PORT_SHORE                             \
-    SHARE_LISTEN=$SHORE_LISTEN
+    IP_ADDR=$IP_ADDR                                \
+    PSHARE_PORT=$PSHARE_PORT                \
+    MOOS_PORT=$MOOS_PORT                        \
+    REGION=$REGION                          \
+    FORCE_IP=$FORCE_IP          
 
 #-------------------------------------------------------
 #  Part 3: Launch the processes
@@ -38,3 +44,5 @@ echo "Launching shoreside MOOS Community"
 pAntler targ_shoreside.moos >& /dev/null &
 uMAC -t targ_shoreside.moos
 kill -- -$$
+
+
