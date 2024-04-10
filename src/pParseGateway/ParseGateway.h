@@ -30,7 +30,6 @@ class ParseGateway : public AppCastingMOOSApp
         void registerVariables();
         void handleNavReport(std::string report);
         void handleWptReport(std::string report);
-        void handleFeatureReport(std::string report);
         void geodesySetup();
 
     private:

@@ -1,9 +1,7 @@
 #!/bin/bash -e
 WARP=1
-SHORE_IP="localhost"
-NAME_SHORE="shoreside"
-PORT_SHORE="9000"
-SHORE_LISTEN="9100"
+VNAME="fishnships"
+VPORT="9000"
 
 #----------------------------------------------------------
 #  Part 1: Check for and handle command-line arguments
@@ -27,9 +25,8 @@ done
 printf "Preparing shoreside .moos file...\n"
 nsplug meta_shoreside.moos targ_shoreside.moos -f \
     WARP=$WARP                                    \
-    SNAME=$NAME_SHORE                             \
-    SPORT=$PORT_SHORE                             \
-    SHARE_LISTEN=$SHORE_LISTEN
+    VNAME=$VNAME                                  \
+    VPORT=$VPORT
 
 #-------------------------------------------------------
 #  Part 3: Launch the processes

@@ -10,10 +10,10 @@ Behavior=BHV_AvoidObstacleV21
 
     use_refinery = true
     allowable_ttc = 20
-    pwt_outer_dist = 20
-    pwt_inner_dist = 10 
-    completed_dist = 40
-    min_util_cpa_dist = 2
+    pwt_outer_dist = 14
+    pwt_inner_dist = 1
+    completed_dist = 20
+    min_util_cpa_dist = 1
     max_util_cpa_dist = 6
     visual_hints = obstacle_edge_color = white
     visual_hints = obstacle_vertex_color = gray60

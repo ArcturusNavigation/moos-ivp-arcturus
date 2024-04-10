@@ -1,10 +1,7 @@
 #!/bin/bash -e
 WARP=1
 VNAME="fishnships"
-VPORT="9002"
-SHARE_LISTEN="9102"
-SHORE_IP="localhost"
-SHORE_LISTEN="9100"
+VPORT="9001"
 
 #----------------------------------------------------------
 #  Part 1: Check for and handle command-line arguments
@@ -29,10 +26,7 @@ printf "Preparing vehicle .moos file...\n"
 nsplug meta_vehicle.moos targ_$VNAME.moos -f \
     WARP=$WARP                               \
     VNAME=$VNAME                             \
-    VPORT=$VPORT                             \
-    SHARE_LISTEN=$SHARE_LISTEN               \
-    SHORE_IP=$SHORE_IP                       \
-    SHORE_LISTEN=$SHORE_LISTEN
+    VPORT=$VPORT                             
 
 printf "Preparing vehicle .bhv file...\n"
 nsplug meta_vehicle.bhv targ_$VNAME.bhv -f   \

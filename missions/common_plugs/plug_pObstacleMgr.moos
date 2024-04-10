@@ -5,10 +5,10 @@ ProcessConfig = pObstacleMgr
 
     point_var = TRACKED_FEATURE
     
-    max_pts_per_cluster = 100
-    max_age_per_point = 3
+    max_pts_per_cluster = 20
+    max_age_per_point = 2
 
     alert_range = 20
 
-    ignore_range = 350
+    ignore_range = 30
 }

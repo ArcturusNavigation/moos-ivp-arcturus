@@ -43,9 +43,6 @@ bool ParseGateway::OnNewMail(MOOSMSG_LIST &NewMail)
         else if (key == "WPT_UPDATE_GPS") 
             handleWptReport(sval);
         
-        else if (key == "TRACKED_FEATURE_GPS")
-            handleFeatureReport(sval);
-
         else if (key != "APPCAST_REQ")
             reportRunWarning("Unhandled Mail: " + key);
     }
@@ -77,19 +74,6 @@ void ParseGateway::handleWptReport(string report) {
             new_msg += ":";
     }
     m_wpt_msg = new_msg;
-}
-
-void ParseGateway::handleFeatureReport(string report) {
-    m_last_rcvd = report;
-
-    double x_gps = stod(tokStringParse(report, "x", ',', '='));
-    double y_gps = stod(tokStringParse(report, "y", ',', '='));
-    string label = tokStringParse(report, "label", ',', '=');
-
-    double x_utm, y_utm;
-    m_Geodesy.LatLong2LocalUTM(x_gps, y_gps, x_utm, y_utm);
-    string feature_msg = "x=" + to_string(x_utm) + ",y=" + to_string(y_utm) + ",label=" + label;
-    Notify("TRACKED_FEATURE", feature_msg);
 }
 
 bool ParseGateway::OnConnectToServer() {
@@ -171,7 +155,6 @@ void ParseGateway::registerVariables()
     AppCastingMOOSApp::RegisterVariables();
     Register("NAV_REPORT", 0);
     Register("WPT_UPDATE_GPS", 0);
-    Register("OBSTACLE_ALERT_GPS", 0);
 }
 
 
