@@ -1,0 +1,19 @@
+ServerHost = localhost
+ServerPort = $(VPORT)
+Community  = $(VNAME)
+
+#include ../common_plugs/plug_origin_warp_sydney_regatta.moos
+
+ProcessConfig = ANTLER
+{
+	MSBetweenLaunches = 100
+
+	Run = MOOSDB @ NewConsole = false
+    Run = pShare @ NewConsole = false
+}
+
+ProcessConfig = pShare
+{
+    Output = src_name = NAV_X, route = 192.168.1.4:9832
+    Output = src_name = NAV_Y, route = 192.168.1.4:9832
+}
