@@ -1,8 +1,6 @@
 ServerHost = localhost
-ServerPort = $(VPORT)
-Community  = $(VNAME)
-
-#include ../common_plugs/plug_origin_warp_sydney_regatta.moos
+ServerPort = 9001
+Community  = test
 
 ProcessConfig = ANTLER
 {

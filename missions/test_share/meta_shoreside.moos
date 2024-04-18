@@ -1,6 +1,6 @@
 ServerHost = localhost
-ServerPort = $(VPORT)
-Community  = $(VNAME)
+ServerPort = 9000
+Community  = test
 
 ProcessConfig = ANTLER
 {
