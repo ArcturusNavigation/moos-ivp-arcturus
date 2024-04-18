@@ -6,8 +6,8 @@ ProcessConfig = ANTLER
 {
 	MSBetweenLaunches = 100
 
-    Run = MOOSDB @ NewConsole = false
-    Run = pShare @ NewConsole = false
+    Run = MOOSDB        @ NewConsole = false
+    Run = pShare        @ NewConsole = false
 }
 
 ProcessConfig = pShare

@@ -26,7 +26,6 @@ ProcessConfig = pMarineViewer
 
 	left_context[follow_wpt] = VIEW_POINT = x=$(XPOS), y=$(YPOS), label=wpt
 	left_context[follow_wpt] = WPT_UPDATE = points=$(XPOS),$(YPOS)
-	left_context[follow_wpt] = DEPLOY     = true
 
 	scope = DEPLOY
 	scope = NAV_X
