@@ -1,6 +1,6 @@
 ServerHost = localhost
-ServerPort = 9001
-Community  = test
+ServerPort = $(MOOS_PORT)
+Community  = $(VNAME)
 
 ProcessConfig = ANTLER
 {
@@ -12,6 +12,6 @@ ProcessConfig = ANTLER
 
 ProcessConfig = pShare
 {
-    Output = src_name = NAV_X, route = 192.168.1.4:9832
-    Output = src_name = NAV_Y, route = 192.168.1.4:9832
+    Output = src_name = NAV_X, route = $(SHORE_IP):$(PSHARE_PORT)
+    Output = src_name = NAV_Y, route = $(SHORE_IP):$(PSHARE_PORT)
 }

@@ -1,6 +1,6 @@
 ServerHost = localhost
-ServerPort = 9000
-Community  = test
+ServerPort = $(MOOS_PORT)
+Community  = $(VNAME)
 
 ProcessConfig = ANTLER
 {
@@ -12,6 +12,6 @@ ProcessConfig = ANTLER
 
 ProcessConfig = pShare
 {
-    Input = route = localhost:9832
+    Input = route = localhost:$(PSHARE_PORT)
 }
 
