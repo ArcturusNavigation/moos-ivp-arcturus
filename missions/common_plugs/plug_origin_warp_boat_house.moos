@@ -1,0 +1,6 @@
+MOOSTimeWarp = $(WARP)
+
+// MIT boat house
+LatOrigin = 42.3552114
+LongOrigin = -71.0976344
+

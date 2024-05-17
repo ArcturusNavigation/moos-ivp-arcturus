@@ -2,7 +2,7 @@ ServerHost = localhost
 ServerPort = $(MOOS_PORT)
 Community  = $(VNAME)
 
-#include ../common_plugs/plug_origin_warp_sydney_regatta.moos
+#include ../common_plugs/plug_origin_warp_boat_house.moos
 
 ProcessConfig = ANTLER
 {

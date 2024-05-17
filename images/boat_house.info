@@ -1,0 +1,13 @@
+// Generated with Anaxi Tile Downloader
+lat_north= 42.35651431705788
+lat_south= 42.35042512243458
+lon_east= -71.08978271484375
+lon_west= -71.103515625
+tileStartX= 39648
+tileStartY= 48481
+tileEndX= 39652
+tileEndY= 48483
+zoom= 17
+numTiles= 15
+mapFile= Map_17_39648-39652_48481-48483.png
+cmd= tsdl.py 42.355539 -71.100815 42.353091 -71.092898 17 https://tile.openstreetmap.org/%zoom%/%xTile%/%yTile%.png
